@@ -4,9 +4,7 @@ using SFML;
 using SFML.Graphics;
 using SFML.Window;
 
-RenderWindow window = new RenderWindow(new VideoMode(1280, 720), "Race Simulator");
-
-window.Close = 
+RenderWindow window = new RenderWindow(new VideoMode(1280, 720), "Race Simulator"); 
 
 while (window.IsOpen)
 {
