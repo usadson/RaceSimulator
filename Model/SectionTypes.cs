@@ -8,7 +8,7 @@ namespace Model
 {
     public enum SectionTypes
     {
-        Gay,
+        Straight,
         LeftCorner,
         RightCorner,
         StartGrid,

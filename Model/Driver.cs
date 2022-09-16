@@ -4,15 +4,17 @@ namespace Model
 {
     public class Driver : IParticipant
     {
-        public string Name { get; set; }
+        public string Name => Character.ToString();
         public int Points { get; set; }
         public IEquipment Equipment { get; set; }
-        public TeamColors TeamColor { get; set; }
+        public TeamColors TeamColor { get; }
 
-        public Driver([DisallowNull] string name, int points, [DisallowNull] IEquipment equipment, 
+        public readonly Character Character;
+
+        public Driver([DisallowNull] Character character, int points, [DisallowNull] IEquipment equipment, 
             [DisallowNull] TeamColors teamColor)
         {
-            Name = name;
+            Character = character;
             Points = points;
             Equipment = equipment;
             TeamColor = teamColor;

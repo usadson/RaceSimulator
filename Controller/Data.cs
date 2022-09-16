@@ -7,8 +7,8 @@ namespace Controller
 {
     public static class Data
     {
-        public static Competition CurrentCompetition { get; private set; }
-        public static Race CurrentRace { get; private set; }
+        public static Competition? CurrentCompetition { get; private set; }
+        public static Race? CurrentRace { get; private set; }
 
         public static void Initialize()
         {
@@ -17,13 +17,20 @@ namespace Controller
             PopulateTracks();
         }
 
+        public static void Reset()
+        {
+            CurrentCompetition = null;
+            CurrentRace = null;
+            TrackRegistry.Reset();
+        }
+
         public static void PopulateParticipants()
         {
             for (int i = 0; i < 8; ++i)
             {
                 CurrentCompetition.Participants.Add(
                     new Driver(
-                        ((Character)i).ToString(),
+                        (Character)i,
                         100,
                         new Car(),
                         TeamColors.Blue
@@ -34,7 +41,7 @@ namespace Controller
 
         private static void AssignCupToCompetition([DisallowNull] Cup cup)
         {
-            CurrentCompetition.Tracks = new(TrackRegistry.TrackByCup[cup]);
+            CurrentCompetition.Tracks = new(TrackRegistry.TracksByCup[cup]);
         }
 
         public static void PopulateTracks()

@@ -2,9 +2,9 @@
 {
     public class Track
     {
-        public Cup Cup { get; set; }
-        public string Name { get; set; }
-        public LinkedList<Section> Sections;
+        public Cup Cup { get; }
+        public string Name { get; }
+        public LinkedList<Section> Sections { get; }
 
         public Track(Cup cup, string name, Section[] sections)
         {

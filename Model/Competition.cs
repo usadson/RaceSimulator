@@ -7,7 +7,6 @@ namespace Model
         public List<IParticipant> Participants { get; set; } = new();
         public Queue<Track> Tracks { get; set; } = new();
 
-        [return: MaybeNull]
         public Track? NextTrack()
         {
             if (Tracks.TryDequeue(out Track? track))

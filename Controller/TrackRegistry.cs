@@ -1,16 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Model;
+using System.Diagnostics.CodeAnalysis;
 
-namespace Model
+namespace Controller
 {
-    public class TrackRegistry
+    public static class TrackRegistry
     {
-        public static List<Track> All { get; private set; } = new();
-        public static Dictionary<Cup, List<Track>> TrackByCup { get; private set; } = new();
-        public static Dictionary<string, Track> TrackByName { get; private set; } = new();
+        public static List<Track> All { get; } = new();
+        public static Dictionary<Cup, List<Track>> TracksByCup { get; } = new();
+        public static Dictionary<string, Track> TrackByName { get; } = new();
 
         public static void Initialize()
         {
@@ -20,14 +17,22 @@ namespace Model
             Register(new Track(Cup.Mushroom, "Toads Factory", Array.Empty<Section>()));
         }
 
-        public static void Register(Track track)
+        public static void Reset()
         {
+            All.Clear();
+            TracksByCup.Clear();
+            TrackByName.Clear();
+        }
+
+        public static void Register([DisallowNull] Track track)
+        {
+            Console.WriteLine($"Adding {track.Name} with others: {All.Count}");
             All.Add(track);
 
-            if (TrackByCup.ContainsKey(track.Cup))
-                TrackByCup[track.Cup].Add(track);
+            if (TracksByCup.ContainsKey(track.Cup))
+                TracksByCup[track.Cup].Add(track);
             else
-                TrackByCup.Add(track.Cup, new List<Track> { track });
+                TracksByCup.Add(track.Cup, new List<Track> { track });
 
             TrackByName.Add(track.Name, track);
         }

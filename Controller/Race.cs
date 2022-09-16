@@ -12,8 +12,8 @@ namespace Controller
     public sealed class Race
     {
         [DisallowNull] public Track Track { get; set; }
-        [DisallowNull] public List<IParticipant> Participants { get; set; }
-        [DisallowNull] public DateTime StartTime { get; set; }
+        [DisallowNull] public List<IParticipant> Participants { get; }
+        [DisallowNull] public DateTime StartTime { get; }
 
         private readonly Random _random = new(DateTime.Now.Millisecond);
         private Dictionary<Section, SectionData> _positions = new();
