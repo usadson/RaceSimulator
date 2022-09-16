@@ -1,20 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Diagnostics.CodeAnalysis;
 
 namespace Model
-{
-    internal class Competition
+{ 
+    public class Competition
     {
-        public List<IParticipant> Participants { get; set; }
-        public Queue<Track> Tracks { get; set; }
+        public List<IParticipant> Participants { get; set; } = new();
+        public Queue<Track> Tracks { get; set; } = new();
 
-        public Track NexTrack()
+        [return: MaybeNull]
+        public Track? NextTrack()
         {
-            return Tracks.Dequeue();
+            if (Tracks.TryDequeue(out Track? track))
+                return track;
+            return null;
         }
-
     }
 }

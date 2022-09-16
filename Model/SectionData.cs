@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Model
 {
-    internal class SectionData
+    public class SectionData
     {
         public IParticipant Left;
         public int DistanceLeft;

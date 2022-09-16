@@ -1,18 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Model
+﻿namespace Model
 {
-    internal class Track
+    public class Track
     {
+        public Cup Cup { get; set; }
         public string Name { get; set; }
         public LinkedList<Section> Sections;
 
-        public Track(string name, Section[] sections)
+        public Track(Cup cup, string name, Section[] sections)
         {
+            Cup = cup;
             Name = name;
             Sections = new(sections);
         }

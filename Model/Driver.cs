@@ -1,16 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Diagnostics.CodeAnalysis;
 
 namespace Model
 {
-    internal class Driver : IParticipant
+    public class Driver : IParticipant
     {
         public string Name { get; set; }
         public int Points { get; set; }
         public IEquipment Equipment { get; set; }
         public TeamColors TeamColor { get; set; }
+
+        public Driver([DisallowNull] string name, int points, [DisallowNull] IEquipment equipment, 
+            [DisallowNull] TeamColors teamColor)
+        {
+            Name = name;
+            Points = points;
+            Equipment = equipment;
+            TeamColor = teamColor;
+        }
     }
 }

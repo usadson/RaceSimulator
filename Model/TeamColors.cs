@@ -1,6 +1,6 @@
 ﻿namespace Model
 {
-    internal enum TeamColors
+    public enum TeamColors
     {
         Red,
         Green,

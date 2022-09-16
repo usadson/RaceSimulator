@@ -1,6 +1,6 @@
 ﻿namespace Model
 {
-    internal class Car : IEquipment
+    public class Car : IEquipment
     {
         public int Quality { get; set; }
         public int Performance { get; set; }

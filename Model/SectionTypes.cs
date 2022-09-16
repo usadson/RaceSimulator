@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Model
 {
-    internal enum SectionTypes
+    public enum SectionTypes
     {
         Gay,
         LeftCorner,

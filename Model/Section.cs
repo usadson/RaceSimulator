@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Model
 {
-    internal class Section
+    public class Section
     {
         public SectionTypes SectionType { get; set; }
     }
