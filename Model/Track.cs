@@ -1,4 +1,6 @@
-﻿namespace Model
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace Model
 {
     public class Track
     {
@@ -6,11 +8,21 @@
         public string Name { get; }
         public LinkedList<Section> Sections { get; }
 
-        public Track(Cup cup, string name, Section[] sections)
+        public Track([DisallowNull] Cup cup, [DisallowNull] string name, [DisallowNull] SectionTypes[] sectionTypes)
         {
             Cup = cup;
             Name = name;
-            Sections = new(sections);
+            Sections = ConvertSectionTypesToSection(sectionTypes);
+        }
+
+        private static LinkedList<Section> ConvertSectionTypesToSection([DisallowNull] SectionTypes[] sectionTypes)
+        {
+            return new(
+                sectionTypes.Select(sectionType => new Section
+                {
+                    SectionType = sectionType
+                })
+            );
         }
     }
 }

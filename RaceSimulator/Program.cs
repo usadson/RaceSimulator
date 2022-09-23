@@ -11,6 +11,13 @@ RenderWindow window = new(new VideoMode(1280, 720), "Race Simulator");
 Data.Initialize();
 Data.NextRace();
 
+Sprite sprite = new()
+{
+    Texture = new("C:\\Data\\MKWii\\minimap_icons.png"),
+};
+
+const int iconSize = 29;
+
 Font font = new("C:\\Windows\\Fonts\\segoeui.ttf");
 
 Text text = new("", font)
@@ -41,10 +48,22 @@ void DrawHUD()
     text.Style = Text.Styles.Bold;
     window.Draw(text);
 
-    text.Position = new(offset.X + text.GetGlobalBounds().Width, text.Position.Y);
-    text.DisplayedString = string.Join(", ", Data.CurrentRace.Participants.ConvertAll(x => x.Name));    
-    text.Style = Text.Styles.Italic;
-    window.Draw(text);
+
+    sprite.Position = new(text.Position.X + text.GetGlobalBounds().Width, text.Position.Y);
+    foreach (IParticipant participant in Data.CurrentRace.Participants)
+    {
+        var driver = (Driver)participant;
+        var index = (int)driver.Character;
+
+        sprite.TextureRect = new(index * iconSize, 0, iconSize, iconSize);
+        window.Draw(sprite);
+        sprite.Position = new(sprite.Position.X + sprite.GetGlobalBounds().Width * 2, sprite.Position.Y);
+    }
+    
+//    text.Position = new(offset.X + text.GetGlobalBounds().Width, text.Position.Y);
+//    text.DisplayedString = string.Join(", ", Data.CurrentRace.Participants.ConvertAll(x => x.Name));    
+//    text.Style = Text.Styles.Italic;
+//    window.Draw(text);
 }
 
 while (window.IsOpen)
