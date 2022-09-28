@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using Model;
 
@@ -26,6 +27,8 @@ namespace Controller
 
         public static void PopulateParticipants()
         {
+            Debug.Assert(CurrentCompetition != null);
+
             for (int i = 0; i < 8; ++i)
             {
                 CurrentCompetition.Participants.Add(
@@ -41,6 +44,7 @@ namespace Controller
 
         private static void AssignCupToCompetition([DisallowNull] Cup cup)
         {
+            Debug.Assert(CurrentCompetition != null);
             CurrentCompetition.Tracks = new(TrackRegistry.TracksByCup[cup]);
         }
 
@@ -52,6 +56,7 @@ namespace Controller
 
         public static void NextRace()
         {
+            Debug.Assert(CurrentCompetition != null);
             Track? track = CurrentCompetition.NextTrack();
 
             if (track != null)

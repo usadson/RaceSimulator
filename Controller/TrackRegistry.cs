@@ -11,10 +11,56 @@ namespace Controller
 
         public static void Initialize()
         {
-            Register(new Track(Cup.Mushroom, "Luigi Circuit", Array.Empty<Section>()));
-            Register(new Track(Cup.Mushroom, "Moo Moo Meadows", Array.Empty<Section>()));
-            Register(new Track(Cup.Mushroom, "Mushroom Gorge", Array.Empty<Section>()));
-            Register(new Track(Cup.Mushroom, "Toads Factory", Array.Empty<Section>()));
+            Register(new Track(Cup.Mushroom, "Luigi Circuit", new SectionTypes[]{ 
+                // nord
+                SectionTypes.Straight,
+                SectionTypes.Straight,
+                SectionTypes.Straight,
+                SectionTypes.Straight,
+                SectionTypes.RightCorner,
+                // east
+                
+                SectionTypes.Straight,
+                SectionTypes.Straight,
+                SectionTypes.Straight,
+                SectionTypes.Straight,
+                SectionTypes.Straight,
+                SectionTypes.Straight,
+                SectionTypes.Straight,
+                SectionTypes.Straight,
+                SectionTypes.RightCorner,
+                // south
+                SectionTypes.Straight,
+                SectionTypes.Straight,
+                SectionTypes.Straight,
+                SectionTypes.Straight,
+                SectionTypes.Straight,
+                SectionTypes.Straight,
+                SectionTypes.Straight,
+                SectionTypes.Straight,
+                SectionTypes.RightCorner,
+                //west
+                SectionTypes.Straight,
+                SectionTypes.Straight,
+                SectionTypes.Straight,
+                SectionTypes.Straight,
+                SectionTypes.Straight,
+                SectionTypes.Straight,
+                SectionTypes.Straight,
+                SectionTypes.Straight,
+                SectionTypes.RightCorner,
+                // nord
+                
+                SectionTypes.Straight,
+                SectionTypes.Straight,
+                SectionTypes.Straight,
+
+                //SectionTypes.Finish,
+                
+            }));
+            Register(new Track(Cup.Mushroom, "Moo Moo Meadows", Array.Empty<SectionTypes>()));
+            Register(new Track(Cup.Mushroom, "Mushroom Gorge", Array.Empty<SectionTypes>()));
+            Register(new Track(Cup.Mushroom, "Toads Factory", Array.Empty<SectionTypes>()));
         }
 
         public static void Reset()
