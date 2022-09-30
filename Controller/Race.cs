@@ -23,6 +23,8 @@ namespace Controller
             Track = track;
             Participants = participants;
             StartTime = DateTime.Now;
+
+            PlaceParticipants();
         }
 
         [return: NotNull]
@@ -42,6 +44,28 @@ namespace Controller
             {
                 participant.Equipment.Quality = _random.Next();
                 participant.Equipment.Performance = _random.Next();
+            }
+        }
+
+        private void PlaceParticipants()
+        {
+            var participants = new Queue<IParticipant>(Participants);
+
+            foreach (var section in Track.Sections)
+            {
+                if (section.SectionType != SectionTypes.StartGrid)
+                    continue;
+
+                SectionData data = new();
+                if (participants.TryDequeue(out var participant))
+                    data.Left = participant;
+                else
+                    return;
+
+                if (participants.TryDequeue(out participant))
+                    data.Right = participant;
+
+                _positions.Add(section, data);
             }
         }
     }

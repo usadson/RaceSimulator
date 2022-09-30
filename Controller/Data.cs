@@ -9,7 +9,18 @@ namespace Controller
     public static class Data
     {
         public static Competition? CurrentCompetition { get; private set; }
-        public static Race? CurrentRace { get; private set; }
+
+        private static Race? _currentRaceImpl = null;
+        public static Race CurrentRace { 
+            get {
+                if (_currentRaceImpl == null)
+                    throw new NullReferenceException();
+                return _currentRaceImpl;
+            }
+            private set => _currentRaceImpl = value; 
+        }
+
+        public static bool HasRace() => _currentRaceImpl != null;
 
         public static void Initialize()
         {
@@ -21,7 +32,7 @@ namespace Controller
         public static void Reset()
         {
             CurrentCompetition = null;
-            CurrentRace = null;
+            _currentRaceImpl = null;
             TrackRegistry.Reset();
         }
 

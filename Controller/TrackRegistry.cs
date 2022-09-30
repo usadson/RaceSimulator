@@ -11,53 +11,24 @@ namespace Controller
 
         public static void Initialize()
         {
-            Register(new Track(Cup.Mushroom, "Luigi Circuit", new SectionTypes[]{ 
-                // nord
-                SectionTypes.Straight,
-                SectionTypes.Straight,
-                SectionTypes.Straight,
-                SectionTypes.Straight,
-                SectionTypes.RightCorner,
-                // east
-                
-                SectionTypes.Straight,
-                SectionTypes.Straight,
-                SectionTypes.Straight,
-                SectionTypes.Straight,
-                SectionTypes.Straight,
-                SectionTypes.Straight,
-                SectionTypes.Straight,
-                SectionTypes.Straight,
-                SectionTypes.RightCorner,
-                // south
-                SectionTypes.Straight,
-                SectionTypes.Straight,
-                SectionTypes.Straight,
-                SectionTypes.Straight,
-                SectionTypes.Straight,
-                SectionTypes.Straight,
-                SectionTypes.Straight,
-                SectionTypes.Straight,
-                SectionTypes.RightCorner,
-                //west
-                SectionTypes.Straight,
-                SectionTypes.Straight,
-                SectionTypes.Straight,
-                SectionTypes.Straight,
-                SectionTypes.Straight,
-                SectionTypes.Straight,
-                SectionTypes.Straight,
-                SectionTypes.Straight,
-                SectionTypes.RightCorner,
-                // nord
-                
-                SectionTypes.Straight,
-                SectionTypes.Straight,
-                SectionTypes.Straight,
-
-                //SectionTypes.Finish,
-                
-            }));
+            Register(new Track(Cup.Mushroom, "Luigi Circuit", 
+                new TrackSectionsBuilder(Direction.North)
+                        .Turn(Direction.East)
+                        .GoStraight(14)
+                        .AddStart()
+                        .AddStart()
+                        .AddStart()
+                        .AddStart()
+                        .Finish()
+                        .GoStraight(19)
+                        .Turn(Direction.South)
+                        .GoStraight(10)
+                        .Turn(Direction.West)
+                        .GoStraight(40)
+                        .Turn(Direction.North)
+                        .GoStraight(10)
+                        .Build(),
+                Direction.North, true));
             Register(new Track(Cup.Mushroom, "Moo Moo Meadows", Array.Empty<SectionTypes>()));
             Register(new Track(Cup.Mushroom, "Mushroom Gorge", Array.Empty<SectionTypes>()));
             Register(new Track(Cup.Mushroom, "Toads Factory", Array.Empty<SectionTypes>()));

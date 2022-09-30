@@ -17,10 +17,10 @@ public class Controller_Data_NextRace
         Assert.That(Data.CurrentCompetition, Is.Not.Null);
         var firstTrack = Data.CurrentCompetition.Tracks.Peek();
         
-        Assert.That(Data.CurrentRace, Is.Null);
+        Assert.That(Data.HasRace(), Is.False);
         
         Data.NextRace();
-        Assert.That(Data.CurrentRace, Is.Not.Null);
+        Assert.That(Data.HasRace(), Is.True);
         Assert.That(Data.CurrentRace.Track, Is.EqualTo(firstTrack));
     } 
 

@@ -117,9 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Baby Peach" xml:space="preserve">
-    <value>Bambina Pesca</value>
-  </data>
   <data name="BabyDaisy" xml:space="preserve">
     <value>Bambina Margherita</value>
   </data>
@@ -128,6 +125,9 @@
   </data>
   <data name="BabyMario" xml:space="preserve">
     <value>Bambino Mario</value>
+  </data>
+  <data name="BabyPeach" xml:space="preserve">
+    <value>Bambina Pesca</value>
   </data>
   <data name="Birdo" xml:space="preserve">
     <value>Strutzi</value>
@@ -161,6 +161,37 @@
   </data>
   <data name="KoopaTroopa" xml:space="preserve">
     <value>Koopa Troopa</value>
+  </data>
+  <data name="Letter of BabyDaisy" xml:space="preserve">
+    <value>d</value>
+  </data>
+  <data name="Letter of BabyLuigi" xml:space="preserve">
+    <value>l</value>
+  </data>
+  <data name="Letter of BabyMario" xml:space="preserve">
+    <value>m</value>
+  </data>
+  <data name="Letter of BabyPeach" xml:space="preserve">
+    <value>p</value>
+  </data>
+  <data name="Letter of Birdo" xml:space="preserve">
+    <value>S</value>
+  </data>
+  <data name="Letter of Bowser" xml:space="preserve">
+    <value>B</value>
+  </data>
+  <data name="Letter of BowserJunior" xml:space="preserve">
+    <value>b</value>
+  </data>
+  <data name="Letter of Daisy" xml:space="preserve">
+    <value>♠</value>
+  </data>
+  <data name="Letter of DiddyKong" xml:space="preserve">
+    <value>♣</value>
+  </data>
+  <data name="Letter of DonkeyKong" xml:space="preserve">
+    <value>✶</value>
+    <comment>♥♦♪♫</comment>
   </data>
   <data name="Luigi" xml:space="preserve">
     <value>Luigi</value>
