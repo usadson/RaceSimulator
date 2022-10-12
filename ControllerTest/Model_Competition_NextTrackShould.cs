@@ -29,7 +29,7 @@ namespace ControllerTest
         [Test]
         public void NextTrack_OneInQueue_ReturnTrack()
         {
-            var track = new Track(Cup.Mushroom, "Luigi Circuit", Array.Empty<Section>());
+            var track = new Track(Cup.Mushroom, "Luigi Circuit", Array.Empty<SectionTypes>(), 3);
             
             Assert.That(_competition.NextTrack(), Is.Null);
             _competition.Tracks.Enqueue(track);
@@ -42,7 +42,7 @@ namespace ControllerTest
         [Test]
         public void NextTrack_OneInQueue_RemoveTrackFromQueue()
         {
-            var track = new Track(Cup.Banana, "DS Delfino Square", Array.Empty<Section>());
+            var track = new Track(Cup.Banana, "DS Delfino Square", Array.Empty<SectionTypes>(), 3);
             
             Assert.That(_competition.NextTrack(), Is.Null);
             _competition.Tracks.Enqueue(track);
@@ -57,8 +57,8 @@ namespace ControllerTest
         [Test]
         public void NextTrack_TwoInQueue_ReturnNextTrack()
         {
-            var track1 = new Track(Cup.Special, "Rainbow Road", Array.Empty<Section>());
-            var track2 = new Track(Cup.Leaf, "DS Desert Hills", Array.Empty<Section>());
+            var track1 = new Track(Cup.Special, "Rainbow Road", Array.Empty<SectionTypes>(), 4);
+            var track2 = new Track(Cup.Leaf, "DS Desert Hills", Array.Empty<SectionTypes>(), 5);
             
             Assert.That(_competition.NextTrack(), Is.Null);
             

@@ -10,9 +10,9 @@ public class Model_Car_Car
     {
         Car car = new();
 
-        Assert.That(car.Performance, Is.EqualTo(0));
-        Assert.That(car.Quality, Is.EqualTo(0));
-        Assert.That(car.Speed, Is.EqualTo(0));
+        Assert.That(car.Performance, Is.Not.EqualTo(0));
+        Assert.That(car.Quality, Is.Not.EqualTo(0));
+        Assert.That(car.Speed, Is.Not.EqualTo(0));
         Assert.That(car.IsBroken, Is.EqualTo(false));
     }
 

@@ -21,7 +21,7 @@ public class Model_Competition_Competition
             new Driver(Character.Luigi, 0, new Car(), TeamColors.Blue)
         };
 
-        Track track = new(Cup.Shell, "GCN Peach Beach", Array.Empty<Section>());
+        Track track = new(Cup.Shell, "GCN Peach Beach", Array.Empty<SectionTypes>(), 1);
 
         Queue<Track> tracks = new();
         tracks.Enqueue(track);

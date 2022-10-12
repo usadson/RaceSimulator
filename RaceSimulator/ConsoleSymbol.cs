@@ -74,15 +74,7 @@ namespace RaceSimulator
 
         public static readonly ConsoleSymbol FinishVertical = new(new string[]
         {
-            "|===|",
-        });
-
-        public static readonly ConsoleSymbol StartGridHorizontal = new(new string[]
-        {
-            "─",
-            "2",
-            "1",
-            "─",
+            "┝----┥"
         });
 
         public static readonly Dictionary<SectionTypes, Dictionary<Direction, ConsoleSymbol>> Symbols = new ()
@@ -131,8 +123,10 @@ namespace RaceSimulator
                 SectionTypes.StartGrid,
                 new Dictionary<Direction, ConsoleSymbol>()
                 {
-                    { Direction.East, StartGridHorizontal },
-                    { Direction.West, StartGridHorizontal },
+                    { Direction.North, StraightNorth },
+                    { Direction.East, StraightEast },
+                    { Direction.South, StraightSouth },
+                    { Direction.West, StraightWest },
                 }
             },
         };

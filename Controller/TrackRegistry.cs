@@ -1,5 +1,4 @@
 ﻿using Model;
-using System.Diagnostics.CodeAnalysis;
 
 namespace Controller
 {
@@ -11,6 +10,7 @@ namespace Controller
 
         public static void Initialize()
         {
+#if NO
             Register(new Track(Cup.Mushroom, "Luigi Circuit", 
                 new TrackSectionsBuilder(Direction.North)
                         .Turn(Direction.East)
@@ -28,10 +28,62 @@ namespace Controller
                         .Turn(Direction.North)
                         .GoStraight(10)
                         .Build(),
-                Direction.North, true));
-            Register(new Track(Cup.Mushroom, "Moo Moo Meadows", Array.Empty<SectionTypes>()));
-            Register(new Track(Cup.Mushroom, "Mushroom Gorge", Array.Empty<SectionTypes>()));
-            Register(new Track(Cup.Mushroom, "Toads Factory", Array.Empty<SectionTypes>()));
+                3, Direction.North, true));
+#endif
+            Register(new Track(
+                Cup.Mushroom, 
+                "Moo Moo Meadows", 
+                new TrackSectionsBuilder(Direction.North)
+                    .GoStraight(2)
+                    .AddStart()
+                    .AddStart()
+                    .AddStart()
+                    .AddStart()
+                    .Finish()
+                    .GoStraight(5)
+                    .Turn(Direction.East)
+                    .GoStraight(60)
+                    .Turn(Direction.South)
+                    .GoStraight(9)
+                    .Turn(Direction.West)
+                    .GoStraight(60)
+                    .Turn(Direction.North)
+                    .GoStraight(3)
+                    .Build(),
+                3
+            ));
+            Register(new Track(
+                Cup.Mushroom, 
+                "Mushroom Gorge",
+                new TrackSectionsBuilder(Direction.North)
+                    .Turn(Direction.East)
+                    .GoStraight(14)
+                    .AddStart()
+                    .AddStart()
+                    .AddStart()
+                    .AddStart()
+                    .Finish()
+                    .GoStraight(19)
+                    .Turn(Direction.South)
+                    .GoStraight(1)
+                    .Turn(Direction.West)
+                    .GoStraight(30)
+                    .Turn(Direction.South)
+                    .GoStraight(1)
+                    .Turn(Direction.East)
+                    .GoStraight(30)
+                    .Turn(Direction.South)
+                    .GoStraight(1)
+                    .Turn(Direction.West)
+                    .GoStraight(40)
+                    .Turn(Direction.North)
+                    .GoStraight(5)
+                    .Turn(Direction.East)
+                    .GoStraight(10)
+                    .Build(),
+                3
+            ));
+            Register(new Track(Cup.Mushroom, "Toads Factory", Array.Empty<SectionTypes>(), 3));
         }
 
         public static void Reset()
@@ -41,9 +93,8 @@ namespace Controller
             TrackByName.Clear();
         }
 
-        public static void Register([DisallowNull] Track track)
+        public static void Register(Track track)
         {
-            Console.WriteLine($"Adding {track.Name} with others: {All.Count}");
             All.Add(track);
 
             if (TracksByCup.ContainsKey(track.Cup))

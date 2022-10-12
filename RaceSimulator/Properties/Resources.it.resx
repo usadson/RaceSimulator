@@ -153,8 +153,26 @@
   <data name="DryBowser" xml:space="preserve">
     <value>SkeloBowser</value>
   </data>
+  <data name="Finished1" xml:space="preserve">
+    <value>NAME è arrivato primo!</value>
+  </data>
+  <data name="Finished2" xml:space="preserve">
+    <value>NAME è arrivato secondo!</value>
+  </data>
+  <data name="Finished3" xml:space="preserve">
+    <value>NAME è arrivato terzo!</value>
+  </data>
+  <data name="FinishedN" xml:space="preserve">
+    <value>NAME ha concluso al POSITION° posto</value>
+  </data>
   <data name="FunkyKong" xml:space="preserve">
     <value>Funky Kong</value>
+  </data>
+  <data name="GameFinished" xml:space="preserve">
+    <value>Il gioco è finito!</value>
+  </data>
+  <data name="GameStarted" xml:space="preserve">
+    <value>Il gioco è iniziato!</value>
   </data>
   <data name="King Boo" xml:space="preserve">
     <value>Re Boo</value>

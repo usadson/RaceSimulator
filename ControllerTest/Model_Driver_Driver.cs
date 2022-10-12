@@ -26,7 +26,7 @@ public class Model_Driver_Driver
         driver.Points = 100;
         Assert.That(driver.Points, Is.EqualTo(100));
 
-        Assert.That(((Car)driver.Equipment).Performance, Is.EqualTo(0));
+        Assert.That(((Car)driver.Equipment).Performance, Is.Not.EqualTo(0));
         driver.Equipment = new Car
         {
             Performance = 14

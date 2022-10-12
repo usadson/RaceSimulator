@@ -7,10 +7,11 @@ namespace ControllerTest;
 public class Controller_Race_Race
 {
     private readonly Track _track = new(Cup.Banana, "N64 Sherbet Island", 
-        new Section[]
+        new SectionTypes[]
         {
-            new()
-        }
+            SectionTypes.StartGrid
+        },
+        3
     );
 
     private readonly List<IParticipant> _participants = new()

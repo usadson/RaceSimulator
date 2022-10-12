@@ -8,7 +8,7 @@ public class Model_Track_TrackShould
     [Test]
     public void Construct()
     {
-        Track track = new(Cup.Shell, "Luigi Circuit", Array.Empty<Section>());
+        Track track = new(Cup.Shell, "Luigi Circuit", Array.Empty<SectionTypes>(), 3);
         
         Assert.That(track.Cup, Is.EqualTo(Cup.Shell));
         Assert.That(track.Name, Is.EqualTo("Luigi Circuit"));

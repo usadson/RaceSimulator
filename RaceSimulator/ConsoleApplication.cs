@@ -21,23 +21,154 @@ namespace RaceSimulator
         private (int Width, int Height) CurrentSize = new(Console.WindowWidth, Console.WindowHeight);
         private Bounds TrackBounds = new(0, 0, 0, 0);
         private Bounds TrackSize = new(0, 0, 0, 0);
+        private bool DarkMode = ShouldSystemUseDarkMode();
+        private int _headerHeight = 0;
+
+        private DateTime? TimeSinceResize;
+
+        private readonly ActionBar _actionBar = new();
+        private Screen? screen;
+
+        private readonly DateTime _initialized;
+
+        public ConsoleApplication()
+        {
+            var splashBegin = DateTime.Now;
+            Console.Clear();
+            string text = I18N.Translate("SplashText");
+            Console.SetCursorPosition((Console.WindowWidth - text.Length) / 2, Console.WindowHeight / 2);
+            Console.Write(text);
+            Debug.WriteLine($"Splash screen took {(DateTime.Now - splashBegin).TotalMilliseconds} ms");
+
+            _initialized = DateTime.Now;
+        }
 
         public override void Run()
         {
+            _actionBar.Show(I18N.Translate("GameStarted"), 3000);
+
+            Data.CurrentRace.Start();
+            Data.CurrentRace.DriversChanged += (sender, e) =>
+            {
+                _trackInvalidated = true;
+            };
+            Data.CurrentRace.ParticipantsOrderModified += (sender) =>
+            {
+                _headerInvalidated = true;
+            };
+            Data.CurrentRace.ParticipantLapped += (sender, participant, didFinish) =>
+            {
+                _headerInvalidated = true;
+
+                if (didFinish)
+                {
+                    string translationKey = "FinishedN";
+                    Debug.Assert(participant.Ranking != null);
+                    if (participant.Ranking <= 3)
+                        translationKey = "Finished" + participant.Ranking;
+
+                    _actionBar.Show(I18N.Translate(translationKey)
+                        .Replace("NAME", I18N.Translate(participant.Name))
+                        .Replace("POSITION", ((int)participant.Ranking).ToString()),
+                        1500
+                    );
+                }
+            };
+            Data.CurrentRace.GameFinished += (sender) =>
+            {
+                ushort ms = 3000;
+                _actionBar.Show(I18N.Translate("GameFinished"), ms);
+                Task.Delay(ms).ContinueWith(ShowResultsScreen);
+            };
+
             Console.OutputEncoding = Encoding.UTF8;
             Console.Title = "Carro di Mario";
             Console.CursorVisible = false;
+            Console.WindowWidth = 100;
+            Console.WindowHeight = 30;
             OnResize(new(Console.WindowWidth, Console.WindowHeight));
-            OnTrackChange();
+            OnTrackChanged();
+            OnThemeChanged();
+
             Console.Clear();
-            DrawHeader();
-            SetupEvents();
+            _headerInvalidated = true;
+
+            Debug.WriteLine("Initialized -> gameStart took {0} ms", (DateTime.Now - _initialized).TotalMilliseconds);
 
             while (true)
             {
+                lock (Data.CurrentRace)
                 Update();
-                Draw();
+
+                if (TimeSinceResize != null)
+                {
+                    if ((DateTime.Now - TimeSinceResize).Value.TotalMilliseconds > 100)
+                    {
+                        Console.Clear();
+                        TimeSinceResize = null;
+                    }
+                    else
+                        continue;
+                }
+
+                var mode = ShouldSystemUseDarkMode();
+                if (mode != DarkMode)
+                {
+                    DarkMode = mode;
+                    OnThemeChanged();
+                }
+                else lock(Data.CurrentRace)
+                {
+                    Draw();
+                }
             }
+        }
+
+        private void ShowResultsScreen(Task task)
+        {
+            Console.Clear();
+            _headerInvalidated = true;
+
+            screen = new ResultsScreen(Data.CurrentRace.Participants);
+
+            int index = 0;
+
+            Data.CurrentRace.CleanUp();
+            Data.NextRace();
+
+            Task.Delay(1000).ContinueWith(task2 =>
+            {
+                if (++index == 5)
+                {
+                    screen = null;
+
+                    Console.Clear();
+                    _headerInvalidated = true;
+                    _trackInvalidated = true;
+                }
+            });
+        }
+
+        private void OnThemeChanged()
+        {
+            if (DarkMode)
+            {
+                Console.BackgroundColor = ConsoleColor.Black;
+                Console.ForegroundColor = ConsoleColor.White;
+            }
+            else
+            {
+                Console.BackgroundColor = ConsoleColor.White;
+                Console.ForegroundColor = ConsoleColor.Black;
+            }
+
+            if (_headerInvalidated && _trackInvalidated)
+                return;
+
+            _headerInvalidated = _trackInvalidated = true;
+
+            Console.Clear();
+            DrawHeader();
         }
 
         public void Draw()
@@ -45,11 +176,15 @@ namespace RaceSimulator
             if (_headerInvalidated)
                 DrawHeader();
 
-            if (_trackInvalidated)
+            if (screen != null)
+                screen.Draw(TrackBounds.Top);
+            else if (_trackInvalidated)
                 DrawTrack();
+
+            _actionBar.Draw();
         }
 
-        private void OnTrackChange()
+        private void OnTrackChanged()
         {
             _headerInvalidated = true;
             _trackInvalidated = true;
@@ -60,21 +195,25 @@ namespace RaceSimulator
 
         private void OnResize((int Width, int Height) size)
         {
+            TimeSinceResize = DateTime.Now;
             CurrentSize = size;
-            //Console.SetBufferSize(Console.WindowWidth, Console.WindowHeight);
+            Console.SetBufferSize(Console.WindowLeft + Console.WindowWidth, Console.WindowTop + Console.WindowHeight);
             _headerInvalidated = true;
             _trackInvalidated = true;
 
-            TrackBounds = Bounds.CreateWithLeftTopRightBottom(2, 6, CurrentSize.Width - 2, CurrentSize.Height);
+            DrawHeader();
+
+            var top = _headerHeight + 2;
+            TrackBounds = Bounds.CreateWithLeftTopRightBottom(2, top, CurrentSize.Width - 2, CurrentSize.Height);
         }
 
         public override void Update()
         {
-            base.Update();
-
             (int Width, int Height) size = new(Console.WindowWidth, Console.WindowHeight);
             if (size.Width != CurrentSize.Width || size.Height != CurrentSize.Height)
                 OnResize(size);
+
+            base.Update();
         }
 
         private void DrawHeader()
@@ -83,23 +222,25 @@ namespace RaceSimulator
             Console.SetCursorPosition(0, 0);
             Console.WriteLine();
 
-            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.ForegroundColor = DarkMode ? ConsoleColor.Yellow : ConsoleColor.DarkYellow;
             Console.Write("  Pista di Gara: ");
-            Console.ForegroundColor = ConsoleColor.Gray;
+            Console.ForegroundColor = DarkMode ? ConsoleColor.Gray : ConsoleColor.Black;
             Console.Write($"{I18N.Translate(Data.CurrentRace.Track.Name)}");
             FillLineTillEnd();
 
-            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.ForegroundColor = DarkMode ? ConsoleColor.Yellow : ConsoleColor.DarkYellow;
             Console.Write("  Giocatori: ");
-            Console.ForegroundColor = ConsoleColor.Gray;
+            Console.ForegroundColor = DarkMode ? ConsoleColor.Gray : ConsoleColor.Black;
             Console.Write(
                 string.Join(", ",
                     Data.CurrentRace.Participants.Select(
-                        participant => I18N.Translate(((Driver)participant).Character.ToString())
+                        participant => string.Format($"{I18N.Translate(((Driver)participant).Character.ToString())} {participant.LapStringified}")
             )));
             FillLineTillEnd();
             FillLineTillEnd();
             FillLineTillEnd('=');
+
+            _headerHeight = Console.GetCursorPosition().Top;
         }
 
         private void DrawTrack()
@@ -120,8 +261,10 @@ namespace RaceSimulator
             
             if (Data.CurrentRace.Track.IsCentered)
             {
+                Debug.Assert(TrackSize.MiddleX != 0);
+                Debug.Assert(TrackSize.MiddleY != 0);
                 X = TrackBounds.MiddleX - TrackSize.MiddleX;
-                Y = TrackBounds.MiddleY - TrackSize.MiddleY;
+                Y = TrackBounds.MiddleY + TrackSize.MiddleY;
             }
             else
             {
@@ -147,11 +290,11 @@ namespace RaceSimulator
             {
                 string repl1 = " ";
                 string repl2 = " ";
-                if (data.Left != null)
-                    repl1 = I18N.Translate("Letter of " + ((Driver)data.Left).Character);
+                if (data.Left.Participant != null && data.Left.Participant.Ranking == null)
+                    repl1 = I18N.Translate("Letter of " + ((Driver)data.Left.Participant).Character);
 
-                if (data.Right != null)
-                    repl2 = I18N.Translate("Letter of " + ((Driver)data.Right).Character);
+                if (data.Right.Participant != null && data.Right.Participant.Ranking == null)
+                    repl2 = I18N.Translate("Letter of " + ((Driver)data.Right.Participant).Character);
 
                 symbol.Draw(X, Y, TrackBounds, repl1, repl2);
 
@@ -197,11 +340,6 @@ namespace RaceSimulator
                 Console.WriteLine();
         }
 
-        private void SetupEvents()
-        {
-            //ConsoleWindowManager.Initialize();
-        }
-
         private static Direction RotateLeft(Direction direction)
         {
             return direction switch
@@ -245,7 +383,10 @@ namespace RaceSimulator
             int maxX = x;
             int maxY = y;
 
-            var direction = Data.CurrentRace.Track.BeginDirection;
+            int minX = 0;
+            int minY = 0;
+
+            var direction = track.BeginDirection;
 
             var it = track.Sections.First;
             while (it != null)
@@ -255,17 +396,22 @@ namespace RaceSimulator
                 var nextSection = it?.Value;
 
                 var symbol = FindSymbol(section.SectionType, direction);
-
-                if (symbol == null)
-                    break;
+                    
+                Debug.Assert(symbol != null);
 
                 var outerX = x + symbol.Width;
                 var outerY = y + symbol.Height;
+                Debug.WriteLine($"x={x} outerX={outerX}     y={y} outerY={outerY} minY={minY}");
                 
                 if (maxX < outerX)
                     maxX = outerX;
                 if (maxY < outerY)
                     maxY = outerY;
+
+                if (minX > x)
+                    minX = x;
+                if (minY > y)
+                    minY = y;
 
                 switch (section.SectionType)
                 {
@@ -279,10 +425,11 @@ namespace RaceSimulator
                         break;
                 }
 
-                var nextSymbol = nextSection != null ? FindSymbol(nextSection.SectionType, direction) : null;
+                if (nextSection == null)
+                    continue;
 
-                if (nextSymbol == null)
-                    break;
+                var nextSymbol = FindSymbol(nextSection.SectionType, direction);
+                Debug.Assert(nextSymbol != null);
 
                 switch (direction)
                 {
@@ -301,7 +448,9 @@ namespace RaceSimulator
                 }
             }
 
-            return new(0, 0, maxX, maxY);
+            Debug.WriteLine($"minX={minX} maxX={maxX}");
+            Debug.WriteLine($"minY={minY} maxY={maxY}");
+            return new(0, 0, maxX - minX, maxY - minY);
         }
 
     }
