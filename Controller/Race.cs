@@ -1,6 +1,5 @@
 ﻿using Model;
 using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 
 using Timer = System.Timers.Timer;
 
@@ -8,14 +7,12 @@ namespace Controller
 {
     public sealed class Race
     {
-        public const int Ticks = 10;
-
         public Track Track { get; set; }
         public List<IParticipant> Participants { get; private set;  }
         public DateTime StartTime { get; }
 
         private readonly Random _random = new(DateTime.Now.Millisecond);
-        private Dictionary<Section, SectionData> _positions = new();
+        private readonly Dictionary<Section, SectionData> _positions = new();
 
         public delegate void DriversChangedEventHandler(Race sender, DriversChangedEventArgs e);
         public event DriversChangedEventHandler? DriversChanged;
@@ -25,12 +22,12 @@ namespace Controller
         public event RaceEventHandler? GameFinished;
 
         public delegate void ParticipantLappedEventHandler(Race sender, IParticipant participant, bool finished);
-        public event ParticipantLappedEventHandler ParticipantLapped;
+        public event ParticipantLappedEventHandler? ParticipantLapped;
 
-        private Timer _timer = new(100);
-        private int _finishedParticipantsCount = 0;
+        private readonly Timer _timer = new(10);
+        private int _finishedParticipantsCount;
 
-        public Race([DisallowNull] Track track, [DisallowNull] List<IParticipant> participants)
+        public Race(Track track, List<IParticipant> participants)
         {
             Track = track;
             Participants = new(participants);
@@ -84,12 +81,9 @@ namespace Controller
 
             var currentSectionIt = Track.Sections.Find(participant.CurrentSection);
             int overshot;
-
-            uint sectionsParticipantWasForwaredTo = 0;
+            
             while ((overshot = (int)lane.Distance - SectionRegistry.Lengths[participant.CurrentSection.SectionType]) > 0)
             {
-                ++sectionsParticipantWasForwaredTo;
-
                 Debug.Assert(currentSectionIt != null);
 
                 var nextSectionIt = currentSectionIt.Next ?? Track.Sections.First;
@@ -154,9 +148,8 @@ namespace Controller
         {
             _timer.Start();
         }
-
-        [return: NotNull]
-        public SectionData GetSectionData([DisallowNull] Section section)
+        
+        public SectionData GetSectionData(Section section)
         {
             lock (_positions)
             {
@@ -169,6 +162,7 @@ namespace Controller
             }
         }
 
+#if disabled
         public void RandomizeEquipment()
         {
             foreach (IParticipant participant in Participants)
@@ -177,6 +171,7 @@ namespace Controller
                 participant.Equipment.Performance = _random.Next();
             }
         }
+#endif // disabled
 
         private void MakeSureParticipantsAreSorted()
         {
@@ -218,22 +213,33 @@ namespace Controller
             }
         }
 
+#if disabled
+        private LinkedListNode<Section> LastSection()
+        {
+            if (Track.Sections.Last != null)
+                return Track.Sections.Last;
+
+            throw new NullReferenceException("Track.Sections.Last is null");
+        }
+
         private int DistanceFromStart(Section section)
         {
             var sectionIt = Track.Sections.Find(section);
             Debug.Assert(sectionIt != null);
 
-            LinkedListNode<Section> it = sectionIt.Previous ?? Track.Sections.Last;
+            var it = sectionIt.Previous ?? LastSection();
             int distance = SectionRegistry.Lengths[section.SectionType];
 
             while (it.Value.SectionType != SectionTypes.Finish)
             {
-                it = it.Previous ?? Track.Sections.Last;
+                it = it.Previous ?? LastSection();
+                Debug.Assert(it != null);
                 distance += SectionRegistry.Lengths[it.Value.SectionType];
             }
 
             return distance;
         }
+#endif // disabled
 
         [Conditional("DEBUG")]
         private void VerifyPositions()
@@ -270,6 +276,16 @@ namespace Controller
             DriversChanged = null;
             ParticipantsOrderModified = null;
             GameFinished = null;
+            ParticipantLapped = null;
+        }
+
+        public void NotifyAllChanged()
+        {
+            lock (_positions)
+            {
+                foreach (var pair in _positions)
+                    pair.Value.Changed = true;
+            }
         }
     }
 }

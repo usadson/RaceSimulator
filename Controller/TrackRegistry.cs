@@ -34,7 +34,6 @@ namespace Controller
                 Cup.Mushroom, 
                 "Moo Moo Meadows", 
                 new TrackSectionsBuilder(Direction.North)
-                    .GoStraight(2)
                     .AddStart()
                     .AddStart()
                     .AddStart()
@@ -44,11 +43,10 @@ namespace Controller
                     .Turn(Direction.East)
                     .GoStraight(60)
                     .Turn(Direction.South)
-                    .GoStraight(9)
+                    .GoStraight(10)
                     .Turn(Direction.West)
                     .GoStraight(60)
                     .Turn(Direction.North)
-                    .GoStraight(3)
                     .Build(),
                 3
             ));

@@ -233,6 +233,9 @@
   <data name="Rosalina" xml:space="preserve">
     <value>Rosalinda</value>
   </data>
+  <data name="SplashText" xml:space="preserve">
+    <value>Carro di Mario</value>
+  </data>
   <data name="Toad" xml:space="preserve">
     <value>Rospo</value>
   </data>
@@ -244,6 +247,9 @@
   </data>
   <data name="Wario" xml:space="preserve">
     <value>Wario</value>
+  </data>
+  <data name="WindowTitle" xml:space="preserve">
+    <value>Carro di Mario</value>
   </data>
   <data name="Yoshi" xml:space="preserve">
     <value>Yoshi</value>

@@ -13,16 +13,25 @@ namespace Model
         {
             private IParticipant? _participant;
 
+            public bool Changed = true;
+
             public uint Distance = 0;
             public IParticipant? Participant
             {
                 get => _participant;
                 set
                 {
+                    Changed = true;
                     _participant = value;
                     Distance = 0;
                 }
             }
+        }
+        
+        public bool Changed
+        {
+            get => Left.Changed || Right.Changed;
+            set => Left.Changed = Right.Changed = value;
         }
 
         [NotNull] public Lane Left { get; } = new();
