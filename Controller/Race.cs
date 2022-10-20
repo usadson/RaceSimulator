@@ -56,6 +56,10 @@ namespace Controller
                     if (participant.Ranking != null)
                         continue;
 
+                    UpdateEquipment(participant.Equipment);
+                    if (participant.Equipment.IsBroken)
+                        continue;
+
                     var distanceToMove = participant.Equipment.Performance * participant.Equipment.Speed;
                     participant.DistanceFromStart += distanceToMove;
                     MoveParticipant(participant, (uint)distanceToMove);
@@ -63,6 +67,25 @@ namespace Controller
                 }
 
                 DriversChanged?.Invoke(this, new DriversChangedEventArgs(Track));
+            }
+        }
+
+        private void UpdateEquipment(IEquipment equipment)
+        {
+            if (equipment.IsBroken)
+            {
+                if (_random.Next(60, 100) < equipment.Quality)
+                    return;
+
+                equipment.IsBroken = false;
+                    
+                equipment.Quality -= 2;
+                if (equipment.Quality < 0)
+                    equipment.Quality = 1;
+            }
+            else
+            {
+                equipment.IsBroken = _random.Next(0, 70) > equipment.Quality;
             }
         }
 
@@ -96,6 +119,7 @@ namespace Controller
                     {
                         lane.Participant = null;
 
+                        participant.Equipment.IsBroken = false;
                         participant.Time = DateTime.Now - StartTime;
                         participant.Ranking = ++_finishedParticipantsCount;
                         participant.DistanceFromStart = int.MaxValue - (int)participant.Ranking;

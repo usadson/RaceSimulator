@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,12 +16,15 @@ namespace Model
 
             public bool Changed = true;
 
-            public uint Distance = 0;
+            public uint Distance;
             public IParticipant? Participant
             {
                 get => _participant;
                 set
                 {
+                    if (value is not null)
+                        Debug.Assert(_participant == null);
+
                     Changed = true;
                     _participant = value;
                     Distance = 0;

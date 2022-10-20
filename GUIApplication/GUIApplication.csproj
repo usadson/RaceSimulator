@@ -1,0 +1,201 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Assets\Bush_01.png" />
+    <None Remove="Assets\Bush_02.png" />
+    <None Remove="Assets\Decor_Building_01.png" />
+    <None Remove="Assets\Decor_Building_02.png" />
+    <None Remove="Assets\Finish.png" />
+    <None Remove="Assets\FinishHorizontal.png" />
+    <None Remove="Assets\FinishVertical.png" />
+    <None Remove="Assets\mainROAD_all_mip.png" />
+    <None Remove="Assets\Pavilion_01.png" />
+    <None Remove="Assets\Pavilion_02.png" />
+    <None Remove="Assets\Racing_Lights.png" />
+    <None Remove="Assets\RoadCircle.png" />
+    <None Remove="Assets\Road_01_Tile_01.png" />
+    <None Remove="Assets\Road_01_Tile_02.png" />
+    <None Remove="Assets\Road_01_Tile_03.png" />
+    <None Remove="Assets\Road_01_Tile_04.png" />
+    <None Remove="Assets\Road_01_Tile_05.png" />
+    <None Remove="Assets\Road_01_Tile_06.png" />
+    <None Remove="Assets\Road_01_Tile_07.png" />
+    <None Remove="Assets\Road_01_Tile_08.png" />
+    <None Remove="Assets\Road_01_Tile_09.png" />
+    <None Remove="Assets\Road_01_Tile_10.png" />
+    <None Remove="Assets\Road_01_Tile_11.png" />
+    <None Remove="Assets\Road_East_RightCorner_Curb.png" />
+    <None Remove="Assets\Road_East_RightCorner_Main.png" />
+    <None Remove="Assets\Road_Horizontal_Straight_LeftCurb.png" />
+    <None Remove="Assets\Road_Horizontal_Straight_Main.png" />
+    <None Remove="Assets\Road_Horizontal_Straight_RightCurb.png" />
+    <None Remove="Assets\Road_North_RightCorner_Curb.png" />
+    <None Remove="Assets\Road_North_RightCorner_Main.png" />
+    <None Remove="Assets\Road_South_RightCorner_Curb.png" />
+    <None Remove="Assets\Road_South_RightCorner_Main.png" />
+    <None Remove="Assets\Road_Vertical_Straight_BottomCurb.png" />
+    <None Remove="Assets\Road_Vertical_Straight_Main.png" />
+    <None Remove="Assets\Road_Vertical_Straight_TopCurb.png" />
+    <None Remove="Assets\Road_West_RightCorner_Curb.png" />
+    <None Remove="Assets\Road_West_RightCorner_Main.png" />
+    <None Remove="Assets\Rock_01.png" />
+    <None Remove="Assets\Rock_02.png" />
+    <None Remove="Assets\Start.png" />
+    <None Remove="Assets\Tree_01.png" />
+    <None Remove="Assets\Tree_02.png" />
+    <None Remove="VisualStudioAvatars.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Assets\Bush_01.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Bush_02.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Decor_Building_01.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Decor_Building_02.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Finish.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\FinishHorizontal.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\FinishVertical.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\mainROAD_all_mip.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Pavilion_01.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Pavilion_02.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Racing_Lights.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\RoadCircle.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Road_01_Tile_09.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Road_01_Tile_01.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Road_01_Tile_02.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Road_01_Tile_03.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Road_01_Tile_04.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Road_01_Tile_05.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Road_01_Tile_06.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Road_01_Tile_07.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Road_01_Tile_08.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Road_01_Tile_10.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Road_01_Tile_11.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Road_East_RightCorner_Curb.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Road_East_RightCorner_Main.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Road_Horizontal_Straight_LeftCurb.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Road_Horizontal_Straight_Main.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Road_Horizontal_Straight_RightCurb.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Road_North_RightCorner_Curb.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Road_North_RightCorner_Main.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Road_South_RightCorner_Curb.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Road_South_RightCorner_Main.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Road_Vertical_Straight_BottomCurb.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Road_Vertical_Straight_Main.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Road_Vertical_Straight_TopCurb.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Road_West_RightCorner_Curb.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Road_West_RightCorner_Main.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Rock_01.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Rock_02.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Start.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Tree_01.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Tree_02.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Drawing.Common" Version="7.0.0-rc.2.22472.3" />
+    <PackageReference Include="System.Drawing.Primitives" Version="4.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CommonViewLib\CommonViewLib.csproj" />
+    <ProjectReference Include="..\Controller\Controller.csproj" />
+    <ProjectReference Include="..\Model\Model.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="VisualStudioAvatars.png" />
+  </ItemGroup>
+
+</Project>

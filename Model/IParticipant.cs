@@ -13,5 +13,6 @@
         public int? Ranking { get; set; }
         public string LapStringified { get; }
         public TimeSpan? Time { get; set; }
+        public int OverallRanking { get; set; }
     }
 }

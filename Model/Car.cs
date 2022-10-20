@@ -12,6 +12,7 @@
             Random rand = new();
             Speed = rand.Next(6, 16);
             Performance = rand.Next(4, 8);
+            Quality = rand.Next(60, 100);
         }
     }
 }

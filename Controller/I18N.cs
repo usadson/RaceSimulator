@@ -1,9 +1,9 @@
 ﻿using System.Globalization;
 using System.Resources;
 
-namespace RaceSimulator
+namespace Controller
 {
-    internal class I18N
+    public class I18N
     {
         static ResourceManager resourceManager;
         static CultureInfo cultureInfo;

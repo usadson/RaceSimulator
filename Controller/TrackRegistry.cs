@@ -10,7 +10,6 @@ namespace Controller
 
         public static void Initialize()
         {
-#if NO
             Register(new Track(Cup.Mushroom, "Luigi Circuit", 
                 new TrackSectionsBuilder(Direction.North)
                         .Turn(Direction.East)
@@ -24,12 +23,11 @@ namespace Controller
                         .Turn(Direction.South)
                         .GoStraight(10)
                         .Turn(Direction.West)
-                        .GoStraight(40)
+                        .GoStraight(38)
                         .Turn(Direction.North)
                         .GoStraight(10)
                         .Build(),
                 3, Direction.North, true));
-#endif
             Register(new Track(
                 Cup.Mushroom, 
                 "Moo Moo Meadows", 
@@ -81,7 +79,7 @@ namespace Controller
                     .Build(),
                 3
             ));
-            Register(new Track(Cup.Mushroom, "Toads Factory", Array.Empty<SectionTypes>(), 3));
+            //Register(new Track(Cup.Mushroom, "Toads Factory", Array.Empty<SectionTypes>(), 3));
         }
 
         public static void Reset()

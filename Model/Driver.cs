@@ -22,6 +22,7 @@ namespace Model
             }
         }
         public TimeSpan? Time { get; set; }
+        public int OverallRanking { get; set; }
 
         public readonly Character Character;
 

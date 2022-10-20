@@ -1,16 +1,11 @@
 ﻿using Model;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RaceSimulator
 {
     public class ConsoleSymbol
     {
-        public static readonly ConsoleSymbol StraightEast = new(new string[]
+        public static readonly ConsoleSymbol StraightEast = new(new[]
         {
             "─",
             "2",
@@ -18,7 +13,7 @@ namespace RaceSimulator
             "─"
         });
 
-        public static readonly ConsoleSymbol StraightWest = new(new string[]
+        public static readonly ConsoleSymbol StraightWest = new(new[]
         {
             "─",
             "1",
@@ -26,37 +21,37 @@ namespace RaceSimulator
             "─"
         });
 
-        public static readonly ConsoleSymbol StraightNorth = new(new string[]
+        public static readonly ConsoleSymbol StraightNorth = new(new[]
         {
             "│2  1│"
         });
-        public static readonly ConsoleSymbol StraightSouth = new(new string[]
+        public static readonly ConsoleSymbol StraightSouth = new(new[]
         {
             "│1  2│"
         });
 
-        public static readonly ConsoleSymbol RightCornerNorth = new(new string[]
+        public static readonly ConsoleSymbol RightCornerNorth = new(new[]
         {
             "┌─────",
             "│ 2   ",
             "│   1 ",
             "│    ┌",
         });
-        public static readonly ConsoleSymbol RightCornerEast = new(new string[]
+        public static readonly ConsoleSymbol RightCornerEast = new(new[]
         {
             "─────┐",
             "   2 │",
             " 1   │",
             "┐    │",
         });
-        public static readonly ConsoleSymbol RightCornerSouth = new(new string[]
+        public static readonly ConsoleSymbol RightCornerSouth = new(new[]
         {
             "┘    │",
             " 1   │",
             "   2 │",
             "─────┘",
         });
-        public static readonly ConsoleSymbol RightCornerWest = new(new string[]
+        public static readonly ConsoleSymbol RightCornerWest = new(new[]
         {
             "|    └",
             "│   1 ",
@@ -64,7 +59,7 @@ namespace RaceSimulator
             "└─────",
         });
 
-        public static readonly ConsoleSymbol FinishHorizontal = new(new string[]
+        public static readonly ConsoleSymbol FinishHorizontal = new(new[]
         {
             "─┰─",
             " ⁞ ",
@@ -72,7 +67,7 @@ namespace RaceSimulator
             "─┸─"
         });
 
-        public static readonly ConsoleSymbol FinishVertical = new(new string[]
+        public static readonly ConsoleSymbol FinishVertical = new(new[]
         {
             "┝----┥"
         });
@@ -131,10 +126,95 @@ namespace RaceSimulator
             },
         };
 
+        public static ConsoleSymbol? FindSymbol(SectionTypes sectionType, Direction direction)
+        {
+            if (!Symbols.TryGetValue(sectionType, out var dict)) return null;
+            return dict.TryGetValue(direction, out var symbol) ? symbol : null;
+        }
+
+        public static Bounds CalculateDimensionsOfTrack(Track track)
+        {
+            int x = 0;
+            int y = 0;
+
+            int maxX = x;
+            int maxY = y;
+
+            int minX = 0;
+            int minY = 0;
+
+            var direction = track.BeginDirection;
+
+            var it = track.Sections.First;
+            while (it != null)
+            {
+                var section = it.Value;
+                it = it.Next;
+                var nextSection = it?.Value;
+
+                var symbol = FindSymbol(section.SectionType, direction);
+
+                Debug.Assert(symbol != null);
+
+                var outerX = x + symbol.Width;
+                var outerY = y + symbol.Height;
+                Debug.WriteLine($"x={x} outerX={outerX}     y={y} outerY={outerY} minY={minY}");
+
+                if (maxX < outerX)
+                    maxX = outerX;
+                if (maxY < outerY)
+                    maxY = outerY;
+
+                if (minX > x)
+                    minX = x;
+                if (minY > y)
+                    minY = y;
+
+                switch (section.SectionType)
+                {
+                    case SectionTypes.LeftCorner:
+                        direction = Directions.RotateLeft(direction);
+                        break;
+                    case SectionTypes.RightCorner:
+                        direction = Directions.RotateRight(direction);
+                        break;
+                }
+
+                if (nextSection == null)
+                    continue;
+
+                var nextSymbol = ConsoleSymbol.FindSymbol(nextSection.SectionType, direction);
+                Debug.Assert(nextSymbol != null);
+
+                switch (direction)
+                {
+                    case Direction.North:
+                        y -= nextSymbol.Height;
+                        break;
+                    case Direction.South:
+                        y += symbol.Height;
+                        break;
+                    case Direction.East:
+                        x += symbol.Width;
+                        break;
+                    case Direction.West:
+                        x -= nextSymbol.Width;
+                        break;
+                }
+            }
+
+            Debug.WriteLine($"minX={minX} maxX={maxX}");
+            Debug.WriteLine($"minY={minY} maxY={maxY}");
+            return new Bounds(minX, minY, maxX, maxY);
+        }
+
         public string[] Data { get; init; }
 
         public int Width => Data[0].Length;
         public int Height => Data.Length;
+
+        public readonly (int X, int Y) LeftPosition;
+        public readonly (int X, int Y) RightPosition;
 
         public ConsoleSymbol(string[] data)
         {
@@ -142,6 +222,17 @@ namespace RaceSimulator
             Debug.Assert(data[0].Length > 0, "Empty strings aren't allowed");
             Debug.Assert(data.Select(str => str.Length).Distinct().Count() == 1, "Strings aren't all the same length");
             Data = data;
+
+            for (int y = 0; y < data.Length; ++y)
+            {
+                var left = data[y].IndexOf('1');
+                if (left != -1)
+                    LeftPosition = (left, y);
+
+                var right = data[y].IndexOf('2');
+                if (right != -1)
+                    RightPosition = (right, y);
+            }
         }
 
         public void Draw(int beginX, int beginY, Bounds withinBounds, string replacement1, string replacement2)

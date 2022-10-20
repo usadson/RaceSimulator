@@ -1,0 +1,297 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="BabyDaisy" xml:space="preserve">
+    <value>Bambina Margherita</value>
+  </data>
+  <data name="BabyLuigi" xml:space="preserve">
+    <value>Bambino Luigi</value>
+  </data>
+  <data name="BabyMario" xml:space="preserve">
+    <value>Bambino Mario</value>
+  </data>
+  <data name="BabyPeach" xml:space="preserve">
+    <value>Bambina Pesca</value>
+  </data>
+  <data name="Birdo" xml:space="preserve">
+    <value>Strutzi</value>
+  </data>
+  <data name="Bowser" xml:space="preserve">
+    <value>Bowser</value>
+  </data>
+  <data name="BowserJunior" xml:space="preserve">
+    <value>Bowser Giuniore</value>
+  </data>
+  <data name="CompetitionFinished" xml:space="preserve">
+    <value>La competizione è finita!
+Grazie giocatori per aver giocato!</value>
+  </data>
+  <data name="CongratulationsParticipantWon" xml:space="preserve">
+    <value>Congratulazioni PARTICIPANT, hai vinto!</value>
+  </data>
+  <data name="Daisy" xml:space="preserve">
+    <value>Margherita</value>
+  </data>
+  <data name="DiddyKong" xml:space="preserve">
+    <value>Diddy Kong</value>
+  </data>
+  <data name="DonkeyKong" xml:space="preserve">
+    <value>Asino Kong</value>
+  </data>
+  <data name="DryBones" xml:space="preserve">
+    <value>Tartosso</value>
+  </data>
+  <data name="DryBowser" xml:space="preserve">
+    <value>SkeloBowser</value>
+  </data>
+  <data name="Finished1" xml:space="preserve">
+    <value>NAME è arrivato primo!</value>
+  </data>
+  <data name="Finished2" xml:space="preserve">
+    <value>NAME è arrivato secondo!</value>
+  </data>
+  <data name="Finished3" xml:space="preserve">
+    <value>NAME è arrivato terzo!</value>
+  </data>
+  <data name="FinishedN" xml:space="preserve">
+    <value>NAME ha concluso al POSITION° posto</value>
+  </data>
+  <data name="FunkyKong" xml:space="preserve">
+    <value>Funky Kong</value>
+  </data>
+  <data name="GameFinished" xml:space="preserve">
+    <value>Il gioco è finito!</value>
+  </data>
+  <data name="GameStarted" xml:space="preserve">
+    <value>Il gioco è iniziato!</value>
+  </data>
+  <data name="HeaderParticipantsLabel" xml:space="preserve">
+    <value>  Giocatori: </value>
+  </data>
+  <data name="HeaderRaceTrackLabel" xml:space="preserve">
+    <value>  Pista di Gara: </value>
+  </data>
+  <data name="King Boo" xml:space="preserve">
+    <value>Re Boo</value>
+  </data>
+  <data name="KoopaTroopa" xml:space="preserve">
+    <value>Koopa Troopa</value>
+  </data>
+  <data name="Letter of BabyDaisy" xml:space="preserve">
+    <value>d</value>
+  </data>
+  <data name="Letter of BabyLuigi" xml:space="preserve">
+    <value>l</value>
+  </data>
+  <data name="Letter of BabyMario" xml:space="preserve">
+    <value>m</value>
+  </data>
+  <data name="Letter of BabyPeach" xml:space="preserve">
+    <value>p</value>
+  </data>
+  <data name="Letter of Birdo" xml:space="preserve">
+    <value>S</value>
+  </data>
+  <data name="Letter of Bowser" xml:space="preserve">
+    <value>B</value>
+  </data>
+  <data name="Letter of BowserJunior" xml:space="preserve">
+    <value>b</value>
+  </data>
+  <data name="Letter of Daisy" xml:space="preserve">
+    <value>♠</value>
+  </data>
+  <data name="Letter of DiddyKong" xml:space="preserve">
+    <value>♣</value>
+  </data>
+  <data name="Letter of DonkeyKong" xml:space="preserve">
+    <value>✶</value>
+    <comment>♥♦♪♫</comment>
+  </data>
+  <data name="Luigi" xml:space="preserve">
+    <value>Luigi</value>
+  </data>
+  <data name="Luigi Circuit" xml:space="preserve">
+    <value>Circuito di Luigi</value>
+  </data>
+  <data name="Mushroom" xml:space="preserve">
+    <value>Funghi</value>
+  </data>
+  <data name="NewGame0s" xml:space="preserve">
+    <value>Il prossimo gioco inizia ora!</value>
+  </data>
+  <data name="NewGame1s" xml:space="preserve">
+    <value>Il prossimo gioco iniziarà tra un secondo!</value>
+  </data>
+  <data name="NewGame2s" xml:space="preserve">
+    <value>Il prossimo gioco iniziarà tra due secondi!</value>
+  </data>
+  <data name="NewGame3s" xml:space="preserve">
+    <value>Il prossimo gioco iniziarà tra tre secondi!</value>
+  </data>
+  <data name="NewGame4s" xml:space="preserve">
+    <value>Il prossimo gioco iniziarà tra quattro secondi!</value>
+  </data>
+  <data name="NewGame5s" xml:space="preserve">
+    <value>Il prossimo gioco iniziarà tra cinque secondi!</value>
+  </data>
+  <data name="NewGameNs" xml:space="preserve">
+    <value>Il prossimo gioco iniziarà tra SECONDS secondi!</value>
+  </data>
+  <data name="Peach" xml:space="preserve">
+    <value>Pesca</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="Resources_it" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>resources.it.resx;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="ResultsScreenNextRace" xml:space="preserve">
+    <value>Il prossimo gioco: TRACK_NAME (INDEX/COUNT).</value>
+  </data>
+  <data name="ResultsScreenTitle" xml:space="preserve">
+    <value>I risultati dalla questa pista di gara:</value>
+  </data>
+  <data name="Rosalina" xml:space="preserve">
+    <value>Rosalinda</value>
+  </data>
+  <data name="sgsg" xml:space="preserve">
+    <value />
+  </data>
+  <data name="SplashText" xml:space="preserve">
+    <value>Carro di Mario</value>
+  </data>
+  <data name="Toad" xml:space="preserve">
+    <value>Rospo</value>
+  </data>
+  <data name="Toadette" xml:space="preserve">
+    <value>Rospetta</value>
+  </data>
+  <data name="Waluigi" xml:space="preserve">
+    <value>Waluigi</value>
+  </data>
+  <data name="Wario" xml:space="preserve">
+    <value>Wario</value>
+  </data>
+  <data name="WindowTitle" xml:space="preserve">
+    <value>Carro di Mario</value>
+  </data>
+  <data name="Yoshi" xml:space="preserve">
+    <value>Yoshi</value>
+  </data>
+</root>

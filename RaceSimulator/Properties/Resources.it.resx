@@ -138,6 +138,13 @@
   <data name="BowserJunior" xml:space="preserve">
     <value>Bowser Giuniore</value>
   </data>
+  <data name="CompetitionFinished" xml:space="preserve">
+    <value>La competizione è finita!
+Grazie giocatori per aver giocato!</value>
+  </data>
+  <data name="CongratulationsParticipantWon" xml:space="preserve">
+    <value>Congratulazioni PARTICIPANT, hai vinto!</value>
+  </data>
   <data name="Daisy" xml:space="preserve">
     <value>Margherita</value>
   </data>
@@ -173,6 +180,12 @@
   </data>
   <data name="GameStarted" xml:space="preserve">
     <value>Il gioco è iniziato!</value>
+  </data>
+  <data name="HeaderParticipantsLabel" xml:space="preserve">
+    <value>  Giocatori: </value>
+  </data>
+  <data name="HeaderRaceTrackLabel" xml:space="preserve">
+    <value>  Pista di Gara: </value>
   </data>
   <data name="King Boo" xml:space="preserve">
     <value>Re Boo</value>
@@ -220,6 +233,27 @@
   <data name="Mushroom" xml:space="preserve">
     <value>Funghi</value>
   </data>
+  <data name="NewGame0s" xml:space="preserve">
+    <value>Il prossimo gioco inizia ora!</value>
+  </data>
+  <data name="NewGame1s" xml:space="preserve">
+    <value>Il prossimo gioco iniziarà tra un secondo!</value>
+  </data>
+  <data name="NewGame2s" xml:space="preserve">
+    <value>Il prossimo gioco iniziarà tra due secondi!</value>
+  </data>
+  <data name="NewGame3s" xml:space="preserve">
+    <value>Il prossimo gioco iniziarà tra tre secondi!</value>
+  </data>
+  <data name="NewGame4s" xml:space="preserve">
+    <value>Il prossimo gioco iniziarà tra quattro secondi!</value>
+  </data>
+  <data name="NewGame5s" xml:space="preserve">
+    <value>Il prossimo gioco iniziarà tra cinque secondi!</value>
+  </data>
+  <data name="NewGameNs" xml:space="preserve">
+    <value>Il prossimo gioco iniziarà tra SECONDS secondi!</value>
+  </data>
   <data name="Peach" xml:space="preserve">
     <value>Pesca</value>
   </data>
@@ -229,6 +263,12 @@
   </data>
   <data name="Resources_it_Designer" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>resources.it.designer.cs;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="ResultsScreenNextRace" xml:space="preserve">
+    <value>Il prossimo gioco: TRACK_NAME (INDEX/COUNT).</value>
+  </data>
+  <data name="ResultsScreenTitle" xml:space="preserve">
+    <value>I risultati dalla questa pista di gara:</value>
   </data>
   <data name="Rosalina" xml:space="preserve">
     <value>Rosalinda</value>

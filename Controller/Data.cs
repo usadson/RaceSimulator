@@ -9,6 +9,7 @@ namespace Controller
     public static class Data
     {
         public static Competition? CurrentCompetition { get; private set; }
+        public static uint RaceInCompetition { get; private set; }
 
         private static Race? _currentRaceImpl = null;
         public static Race CurrentRace { 
@@ -21,6 +22,7 @@ namespace Controller
         }
 
         public static bool HasRace() => _currentRaceImpl != null;
+        public static bool HasNextRace => CurrentCompetition != null && CurrentCompetition.Tracks.Count > 0;
 
         public static void Initialize()
         {
@@ -72,7 +74,12 @@ namespace Controller
 
             if (track != null)
             {
+                ++RaceInCompetition;
                 CurrentRace = new Race(track, CurrentCompetition.Participants);
+            }
+            else
+            {
+                _currentRaceImpl = null;
             }
         }
     }

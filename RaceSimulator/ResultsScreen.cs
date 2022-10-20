@@ -1,29 +1,32 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Diagnostics;
+using Controller;
 using Model;
 
 namespace RaceSimulator;
 
 public sealed class ResultsScreen : Screen
 {
-    private List<IParticipant> _participants;
+    private readonly string[] _strings;
+    private readonly string[] _times;
+    private readonly int _maxLength;
 
-    public ResultsScreen([DisallowNull] List<IParticipant> participants)
-    {
-        _participants = participants;
-    }
+    private readonly string _title;
+    private readonly string _nextRaceText;
 
-    public override void Draw(int startY)
+    private bool _invalidated = true;
+
+    public ResultsScreen(List<IParticipant> participants)
     {
-        var strings = new string[_participants.Count];
-        var times = new string[strings.Length];
-        int maxLength = 0;
-        foreach (var participant in _participants)
+        _strings = new string[participants.Count];
+        _times = new string[_strings.Length];
+
+        _title = I18N.Translate("ResultsScreenTitle");
+        _nextRaceText = I18N.Translate("ResultsScreenNextRace")
+            .Replace("TRACK_NAME", I18N.Translate(Data.CurrentCompetition.Tracks.Peek().Name))
+            .Replace("INDEX", (Data.RaceInCompetition + 1).ToString())
+            .Replace("COUNT", Data.CurrentCompetition.TrackCount.ToString());
+
+        foreach (var participant in participants)
         {
             Debug.Assert(participant.Ranking != null);
             var index = (int)participant.Ranking - 1;
@@ -31,31 +34,70 @@ public sealed class ResultsScreen : Screen
                 $"{participant.Ranking}   {I18N.Translate(participant.Name)}"
             );
 
-            strings[index] = line;
-            times[index] = participant.Time.Value.TotalSeconds.ToString("N2");
+            _strings[index] = line;
+            Debug.Assert(participant.Time != null, "participant.Time != null");
+            _times[index] = participant.Time.Value.TotalSeconds.ToString("N2");
 
-            if (maxLength < line.Length)
-                maxLength = line.Length;
+            if (_maxLength < line.Length)
+                _maxLength = line.Length;
         }
 
-        var maxLengthBeforeTime = maxLength;
-        for (int i = 0; i < strings.Length; ++i)
+        var maxLengthBeforeTime = _maxLength;
+        for (int i = 0; i < _strings.Length; ++i)
         {
-            var line = strings[i];
-            strings[i] = string.Format($"{line} {new string(' ', maxLengthBeforeTime - line.Length)} {times[i]}");
+            var line = _strings[i];
+            _strings[i] = string.Format($"{line} {new string(' ', maxLengthBeforeTime - line.Length)} {_times[i]}");
 
-            if (maxLength < line.Length)
-                maxLength = line.Length;
+            if (_maxLength < line.Length)
+                _maxLength = line.Length;
         }
+    }
 
-        startY += (Console.WindowHeight - startY - strings.Length) / 2;
+    public override void Draw(int startY)
+    {
+        if (!_invalidated)
+            return;
+        _invalidated = false;
+        Console.Clear();
 
-        foreach (var line in strings)
+        startY += (Console.WindowHeight - startY - _strings.Length) / 2;
+
+        var titleHorizontalPadding = (Console.WindowWidth - _title.Length) / 2;
+        if (startY < 4)
         {
-            Console.SetCursorPosition((Console.WindowWidth - maxLength) / 2, startY);
+            Console.SetCursorPosition(titleHorizontalPadding, 0);
+            startY = 2;
+        }
+        else
+        {
+            Console.SetCursorPosition(titleHorizontalPadding, startY - 3);
+        }
+        Console.Write(_title);
+
+        foreach (var line in _strings)
+        {
+            Console.SetCursorPosition((Console.WindowWidth - _maxLength) / 2, startY);
             Console.Write(line);
 
             startY++;
         }
+
+        Console.Write("\n\n");
+        Console.Write(new string(' ', (Console.WindowWidth - _nextRaceText.Length) / 2));
+        Console.Write(_nextRaceText);
+
+    }
+
+    public override void OnResize(Bounds currentBounds)
+    {
+        _invalidated = true;
+    }
+
+    public override void OnTrackInvalidate()
+    {
+    }
+
+    public override void Dispose()
+    {
     }
 }
