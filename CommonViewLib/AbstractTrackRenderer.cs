@@ -8,6 +8,7 @@ public abstract class AbstractTrackRenderer
 {
     public float X { get; set; }
     public float Y { get; set; }
+    protected uint CurrentSectionIndex { get; private set; }
 
     public PointF CurrentPoint => new(X, Y);
 
@@ -23,6 +24,7 @@ public abstract class AbstractTrackRenderer
     protected void StartDrawTrack()
     {
         _direction = Data.CurrentRace.Track.BeginDirection;
+        CurrentSectionIndex = 0;
 
         var sections = Data.CurrentRace.Track.Sections;
         var it = sections.First;
@@ -31,6 +33,7 @@ public abstract class AbstractTrackRenderer
             DrawSection(it.Value, it.Next?.Value, Data.CurrentRace.GetSectionData(it.Value));
 
             it = it.Next;
+            ++CurrentSectionIndex;
         }
     }
 

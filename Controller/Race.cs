@@ -5,7 +5,7 @@ using Timer = System.Timers.Timer;
 
 namespace Controller
 {
-    public sealed class Race
+    public sealed class Race : IDisposable
     {
         public Track Track { get; set; }
         public List<IParticipant> Participants { get; private set;  }
@@ -13,6 +13,7 @@ namespace Controller
 
         private readonly Random _random = new(DateTime.Now.Millisecond);
         private readonly Dictionary<Section, SectionData> _positions = new();
+        private readonly Dictionary<Section, SectionData> _committedPositions = new();
 
         public delegate void DriversChangedEventHandler(Race sender, DriversChangedEventArgs e);
         public event DriversChangedEventHandler? DriversChanged;
@@ -23,7 +24,7 @@ namespace Controller
 
         public delegate void ParticipantLappedEventHandler(Race sender, IParticipant participant, bool finished);
         public event ParticipantLappedEventHandler? ParticipantLapped;
-
+        
         private readonly Timer _timer = new(10);
         private int _finishedParticipantsCount;
 
@@ -33,10 +34,14 @@ namespace Controller
             Participants = new(participants);
             StartTime = DateTime.Now;
 
-            _timer.Elapsed += OnTimerElapsed;
+            foreach (var participant in Participants)
+                participant.Equipment = new Car();
 
             PlaceParticipants();
             MakeSureParticipantsAreSorted();
+            CommitPositions();
+
+            _timer.Elapsed += OnTimerElapsed;
         }
 
         private void OnTimerElapsed(object? sender, EventArgs args)
@@ -60,32 +65,43 @@ namespace Controller
                     if (participant.Equipment.IsBroken)
                         continue;
 
-                    var distanceToMove = participant.Equipment.Performance * participant.Equipment.Speed;
-                    participant.DistanceFromStart += distanceToMove;
+                    var distanceToMove = participant.Equipment.Performance * participant.Equipment.Speed * Data.Speed;
+                    participant.DistanceFromStart += (int)distanceToMove;
                     MoveParticipant(participant, (uint)distanceToMove);
                     VerifyPositions();
                 }
 
-                DriversChanged?.Invoke(this, new DriversChangedEventArgs(Track));
             }
+            
+            CommitPositions();
+            DriversChanged?.Invoke(this, new DriversChangedEventArgs(Track));
         }
 
         private void UpdateEquipment(IEquipment equipment)
         {
             if (equipment.IsBroken)
             {
+                if (equipment.WhenWasBroken != null && 
+                        (DateTime.Now - equipment.WhenWasBroken.Value).TotalSeconds * Data.Speed < 3)
+                    return;
+
                 if (_random.Next(60, 100) < equipment.Quality)
                     return;
 
                 equipment.IsBroken = false;
-                    
+                equipment.WhenWasBroken = DateTime.Now;
+
                 equipment.Quality -= 2;
                 if (equipment.Quality < 0)
-                    equipment.Quality = 1;
+                    equipment.Quality = 100;
             }
-            else
+            else if (_random.Next(0, 70) > equipment.Quality)
             {
-                equipment.IsBroken = _random.Next(0, 70) > equipment.Quality;
+                if (equipment.WhenWasBroken is not null &&
+                        (DateTime.Now - equipment.WhenWasBroken.Value).TotalSeconds < 6)
+                    return;
+                equipment.WhenWasBroken = DateTime.Now;
+                equipment.IsBroken = true;
             }
         }
 
@@ -93,7 +109,7 @@ namespace Controller
         {
             Debug.Assert(participant.CurrentSection != null);
 
-            var sectionData = GetSectionData(participant.CurrentSection);
+            var sectionData = GetUncommittedSectionData(participant.CurrentSection);
 
             var isLeft = sectionData.Left.Participant == participant;
             
@@ -135,7 +151,7 @@ namespace Controller
                     ParticipantLapped?.Invoke(this, participant, false);
                 }
 
-                var nextSectionData = GetSectionData(nextSection);
+                var nextSectionData = GetUncommittedSectionData(nextSection);
 
                 var nextLane = isLeft ? nextSectionData.Left : nextSectionData.Right;
 
@@ -173,11 +189,11 @@ namespace Controller
             _timer.Start();
         }
         
-        public SectionData GetSectionData(Section section)
+        private SectionData GetUncommittedSectionData(Section section)
         {
             lock (_positions)
             {
-                if (_positions.TryGetValue(section, out SectionData? data))
+                if (_positions.TryGetValue(section, out var data))
                     return data;
 
                 SectionData newData = new();
@@ -186,16 +202,14 @@ namespace Controller
             }
         }
 
-#if disabled
-        public void RandomizeEquipment()
+        public SectionData GetSectionData(Section section)
         {
-            foreach (IParticipant participant in Participants)
+            Debug.Assert(section.Parent == Track);
+            lock (_committedPositions)
             {
-                participant.Equipment.Quality = _random.Next();
-                participant.Equipment.Performance = _random.Next();
+                return _committedPositions[section];
             }
         }
-#endif // disabled
 
         private void MakeSureParticipantsAreSorted()
         {
@@ -206,6 +220,9 @@ namespace Controller
                 Participants = sorted;
                 ParticipantsOrderModified?.Invoke(this);
             }
+
+            for (ushort i = 0; i < Participants.Count; ++i)
+                Participants[i].PositionInRace = (ushort)(i + 1);
         }
 
         private void PlaceParticipants()
@@ -213,26 +230,29 @@ namespace Controller
             Debug.Assert(_positions.Count == 0);
             var participants = new Queue<IParticipant>(Participants);
 
+            ushort position = 1;
+
             foreach (var section in Track.Sections)
             {
-                if (section.SectionType != SectionTypes.StartGrid)
-                    continue;
-
                 SectionData data = new();
-                if (participants.TryDequeue(out var participant))
-                {
-                    data.Left.Participant = participant;
-                    participant.CurrentSection = section;
-                }
-                else
-                    return;
 
-                if (participants.TryDequeue(out participant))
+                if (section.SectionType == SectionTypes.StartGrid)
                 {
-                    data.Right.Participant = participant;
-                    participant.CurrentSection = section;
+                    if (participants.TryDequeue(out var participant))
+                    {
+                        participant.PositionInRace = position++;
+                        data.Left.Participant = participant;
+                        participant.CurrentSection = section;
+                    }
+
+                    if (participants.TryDequeue(out participant))
+                    {
+                        participant.PositionInRace = position++;
+                        data.Right.Participant = participant;
+                        participant.CurrentSection = section;
+                    }
                 }
-                
+
                 _positions.Add(section, data);
             }
         }
@@ -291,11 +311,10 @@ namespace Controller
 
                 Debug.Assert(encounteredParticipants.Contains(participant),
                     $"Participant not participating: {participant}");
-
             }
         }
 
-        public void CleanUp()
+        public void Dispose()
         {
             DriversChanged = null;
             ParticipantsOrderModified = null;
@@ -310,6 +329,28 @@ namespace Controller
                 foreach (var pair in _positions)
                     pair.Value.Changed = true;
             }
+        }
+
+        public void CommitPositions()
+        {
+            lock (_positions)
+            {
+                lock (_committedPositions)
+                {
+                    _committedPositions.Clear();
+                    _committedPositions.EnsureCapacity(_positions.Count);
+                    foreach (var entry in _positions)
+                        _committedPositions.Add(entry.Key, (SectionData)entry.Value.Clone());
+                }
+            }
+        }
+
+        private bool ArePositionsLocked()
+        {
+            var wasLocked = !Monitor.TryEnter(_positions);
+            if (!wasLocked)
+                Monitor.Exit(_positions);
+            return wasLocked;
         }
     }
 }

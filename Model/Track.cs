@@ -26,11 +26,12 @@
             YOffset = yOffset;
         }
 
-        private static LinkedList<Section> ConvertSectionTypesToSection(SectionTypes[] sectionTypes)
+        private LinkedList<Section> ConvertSectionTypesToSection(IEnumerable<SectionTypes> sectionTypes)
         {
             return new(
                 sectionTypes.Select(sectionType => new Section
                 {
+                    Parent = this,
                     SectionType = sectionType
                 })
             );

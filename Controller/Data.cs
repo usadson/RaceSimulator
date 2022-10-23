@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
+﻿using System.Diagnostics;
 using Model;
 
 namespace Controller
@@ -11,7 +8,9 @@ namespace Controller
         public static Competition? CurrentCompetition { get; private set; }
         public static uint RaceInCompetition { get; private set; }
 
-        private static Race? _currentRaceImpl = null;
+        public static double Speed = 1.0f;
+
+        private static Race? _currentRaceImpl;
         public static Race CurrentRace { 
             get {
                 if (_currentRaceImpl == null)
@@ -23,6 +22,12 @@ namespace Controller
 
         public static bool HasRace() => _currentRaceImpl != null;
         public static bool HasNextRace => CurrentCompetition != null && CurrentCompetition.Tracks.Count > 0;
+
+        public delegate void RaceBreakdownEventHandler(Race race);
+        public delegate void NewRaceStartingEventHandler(Race race);
+
+        public static event RaceBreakdownEventHandler? RaceBreakdown;
+        public static event NewRaceStartingEventHandler? NewRaceStarting;
 
         public static void Initialize()
         {
@@ -42,11 +47,18 @@ namespace Controller
         {
             Debug.Assert(CurrentCompetition != null);
 
-            for (int i = 0; i < 8; ++i)
+            var characters = new LinkedList<Character>(Enum.GetValues<Character>());
+
+            var random = new Random((int)DateTime.Now.Ticks);
+
+            for (int i = 0; i < 12; ++i)
             {
+                var character = characters.ElementAt(random.Next(0, characters.Count));
+                characters.Remove(character);
+
                 CurrentCompetition.Participants.Add(
                     new Driver(
-                        (Character)i,
+                        character,
                         100,
                         new Car(),
                         TeamColors.Blue
@@ -55,7 +67,7 @@ namespace Controller
             }
         }
 
-        private static void AssignCupToCompetition([DisallowNull] Cup cup)
+        private static void AssignCupToCompetition(Cup cup)
         {
             Debug.Assert(CurrentCompetition != null);
             CurrentCompetition.Tracks = new(TrackRegistry.TracksByCup[cup]);
@@ -69,13 +81,24 @@ namespace Controller
 
         public static void NextRace()
         {
+            if (_currentRaceImpl != null)
+            {
+                RaceBreakdown?.Invoke(_currentRaceImpl);
+                _currentRaceImpl.Dispose();
+            }
+
             Debug.Assert(CurrentCompetition != null);
             Track? track = CurrentCompetition.NextTrack();
 
             if (track != null)
             {
                 ++RaceInCompetition;
+
+                foreach (var participant in CurrentCompetition.Participants)
+                    participant.OnNewRace();
+
                 CurrentRace = new Race(track, CurrentCompetition.Participants);
+                NewRaceStarting?.Invoke(CurrentRace);
             }
             else
             {

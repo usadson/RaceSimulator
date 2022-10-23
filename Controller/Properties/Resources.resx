@@ -129,8 +129,26 @@
   <data name="BabyMario" xml:space="preserve">
     <value>Baby Mario</value>
   </data>
+  <data name="CompetitionTitle" xml:space="preserve">
+    <value>Competition:</value>
+  </data>
+  <data name="Menu" xml:space="preserve">
+    <value>Menu</value>
+  </data>
+  <data name="MenuExit" xml:space="preserve">
+    <value>Exit</value>
+  </data>
+  <data name="MenuParticipantStatistics" xml:space="preserve">
+    <value>Participant Statistics</value>
+  </data>
+  <data name="MenuRaceStatistics" xml:space="preserve">
+    <value>Race Statistics</value>
+  </data>
   <data name="Mushroom" xml:space="preserve">
     <value>Mushroom</value>
+  </data>
+  <data name="TrackTitle" xml:space="preserve">
+    <value>Track:</value>
   </data>
   <data name="WindowTitle" xml:space="preserve">
     <value>Mario Kart</value>

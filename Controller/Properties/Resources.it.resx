@@ -142,6 +142,9 @@
     <value>La competizione è finita!
 Grazie giocatori per aver giocato!</value>
   </data>
+  <data name="CompetitionTitle" xml:space="preserve">
+    <value>Competizione:</value>
+  </data>
   <data name="CongratulationsParticipantWon" xml:space="preserve">
     <value>Congratulazioni PARTICIPANT, hai vinto!</value>
   </data>
@@ -230,6 +233,18 @@ Grazie giocatori per aver giocato!</value>
   <data name="Luigi Circuit" xml:space="preserve">
     <value>Circuito di Luigi</value>
   </data>
+  <data name="Menu" xml:space="preserve">
+    <value>Menu</value>
+  </data>
+  <data name="MenuExit" xml:space="preserve">
+    <value>Esci</value>
+  </data>
+  <data name="MenuParticipantStatistics" xml:space="preserve">
+    <value>Statistiche dei Giocatori</value>
+  </data>
+  <data name="MenuRaceStatistics" xml:space="preserve">
+    <value>Statistiche della Pista di Gara</value>
+  </data>
   <data name="Mushroom" xml:space="preserve">
     <value>Funghi</value>
   </data>
@@ -276,11 +291,17 @@ Grazie giocatori per aver giocato!</value>
   <data name="SplashText" xml:space="preserve">
     <value>Carro di Mario</value>
   </data>
+  <data name="String1" xml:space="preserve">
+    <value />
+  </data>
   <data name="Toad" xml:space="preserve">
     <value>Rospo</value>
   </data>
   <data name="Toadette" xml:space="preserve">
     <value>Rospetta</value>
+  </data>
+  <data name="TrackTitle" xml:space="preserve">
+    <value>Pista di Gara:</value>
   </data>
   <data name="Waluigi" xml:space="preserve">
     <value>Waluigi</value>

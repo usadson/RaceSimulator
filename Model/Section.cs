@@ -8,6 +8,7 @@ namespace Model
 {
     public class Section
     {
+        public Track Parent { get; init; }
         public SectionTypes SectionType { get; set; }
     }
 }

@@ -8,7 +8,7 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace Model
 {
-    public class SectionData
+    public class SectionData : ICloneable
     {
         public class Lane
         {
@@ -38,7 +38,24 @@ namespace Model
             set => Left.Changed = Right.Changed = value;
         }
 
-        [NotNull] public Lane Left { get; } = new();
-        [NotNull] public Lane Right { get; } = new();        
+        public Lane Left { get; } = new();
+        public Lane Right { get; } = new();
+
+        public object Clone()
+        {
+            return new SectionData
+            {
+                Left =
+                {
+                    Participant = Left.Participant,
+                    Distance = Left.Distance
+                },
+                Right =
+                {
+                    Participant = Right.Participant,
+                    Distance = Right.Distance
+                }
+            };
+        }
     }
 }

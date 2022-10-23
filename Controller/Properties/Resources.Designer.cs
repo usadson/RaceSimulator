@@ -97,11 +97,65 @@ namespace Controller.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Competition:.
+        /// </summary>
+        public static string CompetitionTitle {
+            get {
+                return ResourceManager.GetString("CompetitionTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Menu.
+        /// </summary>
+        public static string Menu {
+            get {
+                return ResourceManager.GetString("Menu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exit.
+        /// </summary>
+        public static string MenuExit {
+            get {
+                return ResourceManager.GetString("MenuExit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Participant Statistics.
+        /// </summary>
+        public static string MenuParticipantStatistics {
+            get {
+                return ResourceManager.GetString("MenuParticipantStatistics", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Race Statistics.
+        /// </summary>
+        public static string MenuRaceStatistics {
+            get {
+                return ResourceManager.GetString("MenuRaceStatistics", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Mushroom.
         /// </summary>
         public static string Mushroom {
             get {
                 return ResourceManager.GetString("Mushroom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Track:.
+        /// </summary>
+        public static string TrackTitle {
+            get {
+                return ResourceManager.GetString("TrackTitle", resourceCulture);
             }
         }
         

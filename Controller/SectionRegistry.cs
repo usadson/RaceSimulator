@@ -7,11 +7,11 @@ namespace Controller
     {
         public static Dictionary<SectionTypes, ushort> Lengths { get; } = new()
         {
-            {SectionTypes.Straight, 20},
-            {SectionTypes.StartGrid, 20},
-            {SectionTypes.Finish, 20},
-            {SectionTypes.LeftCorner, 30},
-            {SectionTypes.RightCorner, 30},
+            {SectionTypes.Straight, 200},
+            {SectionTypes.StartGrid, 200},
+            {SectionTypes.Finish, 200},
+            {SectionTypes.LeftCorner, 300},
+            {SectionTypes.RightCorner, 300},
         };
     }
 }

@@ -1,0 +1,64 @@
+﻿<Window x:Class="GUIApplication.ParticipantStatisticsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GUIApplication"
+        mc:Ignorable="d"
+        xmlns:resx="clr-namespace:Controller.Properties;assembly=Controller"
+        Title="{x:Static resx:Resources.MenuParticipantStatistics}"
+        Height="720" Width="450">
+    <Window.DataContext>
+        <local:ParticipantsStatisticsView/>
+    </Window.DataContext>
+    <Viewbox Stretch="Uniform" HorizontalAlignment="Left">
+        <DockPanel>
+            <ItemsControl ItemsSource="{Binding Participants}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal" 
+                                    HorizontalAlignment="Stretch"
+                                    VerticalAlignment="Stretch"
+                                    Margin="8">
+                            <Viewbox Stretch="Uniform">
+                                <Image RenderTransformOrigin="16,0">
+                                    <Image.Source>
+                                        <CroppedBitmap Source="Assets/Positions.png" SourceRect="{Binding PositionRect}"></CroppedBitmap>
+                                    </Image.Source>
+                                </Image>
+                            </Viewbox>
+                            <Viewbox Stretch="Uniform">
+                                <Image RenderTransformOrigin="16,0">
+                                    <Image.Source>
+                                        <CroppedBitmap Source="Assets/character_icons.png" SourceRect="{Binding PictureRect}"></CroppedBitmap>
+                                    </Image.Source>
+                                </Image>
+                            </Viewbox>
+                            <TextBlock Foreground="Black" FontSize="34" Text="{Binding Text}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+
+
+            <ItemsControl ItemsSource="{Binding Participants}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal" 
+                                    HorizontalAlignment="Stretch"
+                                    VerticalAlignment="Stretch"
+                                    Margin="8">
+                            <TextBlock Foreground="Black" FontSize="34">
+                                <TextBlock.Text>
+                                    <MultiBinding StringFormat="{}{0}">
+                                        <Binding Path="Name"/>
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
+                        </StackPanel>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </DockPanel>
+    </Viewbox>
+</Window>

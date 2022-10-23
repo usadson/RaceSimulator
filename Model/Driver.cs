@@ -13,6 +13,16 @@ namespace Model
         public int DistanceFromStart { get; set; }
         public int Lap { get; set; } = 0;
         public int? Ranking { get; set; } = null;
+        public ushort PositionInRace { get; set; }
+
+        public void OnNewRace()
+        {
+            DistanceFromStart = 0;
+            Lap = 0;
+            Ranking = null;
+            PositionInRace = 0;
+        }
+
         public string LapStringified { 
             get {
                 if (Lap == 0)

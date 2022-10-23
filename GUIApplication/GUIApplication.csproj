@@ -11,14 +11,121 @@
   <ItemGroup>
     <None Remove="Assets\Bush_01.png" />
     <None Remove="Assets\Bush_02.png" />
+    <None Remove="Assets\character_icons.png" />
+    <None Remove="Assets\Crab.png" />
     <None Remove="Assets\Decor_Building_01.png" />
     <None Remove="Assets\Decor_Building_02.png" />
     <None Remove="Assets\Finish.png" />
     <None Remove="Assets\FinishHorizontal.png" />
     <None Remove="Assets\FinishVertical.png" />
+    <None Remove="Assets\Goomba.png" />
+    <None Remove="Assets\Grass_Tile.png" />
+    <None Remove="Assets\LC_Grass.png" />
     <None Remove="Assets\mainROAD_all_mip.png" />
+    <None Remove="Assets\Particles\explosion01-frame001.tga" />
+    <None Remove="Assets\Particles\explosion01-frame002.tga" />
+    <None Remove="Assets\Particles\explosion01-frame003.tga" />
+    <None Remove="Assets\Particles\explosion01-frame004.tga" />
+    <None Remove="Assets\Particles\explosion01-frame005.tga" />
+    <None Remove="Assets\Particles\explosion01-frame006.tga" />
+    <None Remove="Assets\Particles\explosion01-frame007.tga" />
+    <None Remove="Assets\Particles\explosion01-frame008.tga" />
+    <None Remove="Assets\Particles\explosion01-frame009.tga" />
+    <None Remove="Assets\Particles\explosion01-frame010.tga" />
+    <None Remove="Assets\Particles\explosion01-frame011.tga" />
+    <None Remove="Assets\Particles\explosion01-frame012.tga" />
+    <None Remove="Assets\Particles\explosion01-frame013.tga" />
+    <None Remove="Assets\Particles\explosion01-frame014.tga" />
+    <None Remove="Assets\Particles\explosion01-frame015.tga" />
+    <None Remove="Assets\Particles\explosion01-frame016.tga" />
+    <None Remove="Assets\Particles\explosion01-frame017.tga" />
+    <None Remove="Assets\Particles\explosion01-frame018.tga" />
+    <None Remove="Assets\Particles\explosion01-frame019.tga" />
+    <None Remove="Assets\Particles\explosion01-frame020.tga" />
+    <None Remove="Assets\Particles\explosion01-frame021.tga" />
+    <None Remove="Assets\Particles\explosion01-frame022.tga" />
+    <None Remove="Assets\Particles\explosion01-frame023.tga" />
+    <None Remove="Assets\Particles\explosion01-frame024.tga" />
+    <None Remove="Assets\Particles\explosion01-frame025.tga" />
+    <None Remove="Assets\Particles\explosion01-frame026.tga" />
+    <None Remove="Assets\Particles\explosion01-frame027.tga" />
+    <None Remove="Assets\Particles\explosion01-frame028.tga" />
+    <None Remove="Assets\Particles\explosion01-frame029.tga" />
+    <None Remove="Assets\Particles\explosion01-frame030.tga" />
+    <None Remove="Assets\Particles\explosion01-frame031.tga" />
+    <None Remove="Assets\Particles\explosion01-frame032.tga" />
+    <None Remove="Assets\Particles\explosion01-frame033.tga" />
+    <None Remove="Assets\Particles\explosion01-frame034.tga" />
+    <None Remove="Assets\Particles\explosion01-frame035.tga" />
+    <None Remove="Assets\Particles\explosion01-frame036.tga" />
+    <None Remove="Assets\Particles\explosion01-frame037.tga" />
+    <None Remove="Assets\Particles\explosion01-frame038.tga" />
+    <None Remove="Assets\Particles\explosion01-frame039.tga" />
+    <None Remove="Assets\Particles\explosion01-frame040.tga" />
+    <None Remove="Assets\Particles\explosion01-frame041.tga" />
+    <None Remove="Assets\Particles\explosion01-frame042.tga" />
+    <None Remove="Assets\Particles\explosion01-frame043.tga" />
+    <None Remove="Assets\Particles\explosion01-frame044.tga" />
+    <None Remove="Assets\Particles\explosion01-frame045.tga" />
+    <None Remove="Assets\Particles\explosion01-frame046.tga" />
+    <None Remove="Assets\Particles\explosion01-frame047.tga" />
+    <None Remove="Assets\Particles\explosion01-frame048.tga" />
+    <None Remove="Assets\Particles\explosion01-frame049.tga" />
+    <None Remove="Assets\Particles\explosion01-frame050.tga" />
+    <None Remove="Assets\Particles\explosion01-frame051.tga" />
+    <None Remove="Assets\Particles\explosion01-frame052.tga" />
+    <None Remove="Assets\Particles\explosion01-frame053.tga" />
+    <None Remove="Assets\Particles\explosion01-frame054.tga" />
+    <None Remove="Assets\Particles\explosion01-frame055.tga" />
+    <None Remove="Assets\Particles\explosion01-frame056.tga" />
+    <None Remove="Assets\Particles\explosion01-frame057.tga" />
+    <None Remove="Assets\Particles\explosion01-frame058.tga" />
+    <None Remove="Assets\Particles\explosion01-frame059.tga" />
+    <None Remove="Assets\Particles\explosion01-frame060.tga" />
+    <None Remove="Assets\Particles\explosion01-frame061.tga" />
+    <None Remove="Assets\Particles\explosion01-frame062.tga" />
+    <None Remove="Assets\Particles\explosion01-frame063.tga" />
+    <None Remove="Assets\Particles\explosion01-frame064.tga" />
+    <None Remove="Assets\Particles\explosion01-frame065.tga" />
+    <None Remove="Assets\Particles\explosion01-frame066.tga" />
+    <None Remove="Assets\Particles\explosion01-frame067.tga" />
+    <None Remove="Assets\Particles\explosion01-frame068.tga" />
+    <None Remove="Assets\Particles\explosion01-frame069.tga" />
+    <None Remove="Assets\Particles\explosion01-frame070.tga" />
+    <None Remove="Assets\Particles\explosion01-frame071.tga" />
+    <None Remove="Assets\Particles\explosion01-frame072.tga" />
+    <None Remove="Assets\Particles\explosion01-frame073.tga" />
+    <None Remove="Assets\Particles\explosion01-frame074.tga" />
+    <None Remove="Assets\Particles\explosion01-frame075.tga" />
+    <None Remove="Assets\Particles\explosion01-frame076.tga" />
+    <None Remove="Assets\Particles\explosion01-frame077.tga" />
+    <None Remove="Assets\Particles\explosion01-frame078.tga" />
+    <None Remove="Assets\Particles\explosion01-frame079.tga" />
+    <None Remove="Assets\Particles\explosion01-frame080.tga" />
+    <None Remove="Assets\Particles\explosion01-frame081.tga" />
+    <None Remove="Assets\Particles\explosion01-frame082.tga" />
+    <None Remove="Assets\Particles\explosion01-frame083.tga" />
+    <None Remove="Assets\Particles\explosion01-frame084.tga" />
+    <None Remove="Assets\Particles\explosion01-frame085.tga" />
+    <None Remove="Assets\Particles\explosion01-frame086.tga" />
+    <None Remove="Assets\Particles\explosion01-frame087.tga" />
+    <None Remove="Assets\Particles\explosion01-frame088.tga" />
+    <None Remove="Assets\Particles\explosion01-frame089.tga" />
+    <None Remove="Assets\Particles\explosion01-frame090.tga" />
+    <None Remove="Assets\Particles\explosion01-frame091.tga" />
+    <None Remove="Assets\Particles\explosion01-frame092.tga" />
+    <None Remove="Assets\Particles\explosion01-frame093.tga" />
+    <None Remove="Assets\Particles\explosion01-frame094.tga" />
+    <None Remove="Assets\Particles\explosion01-frame095.tga" />
+    <None Remove="Assets\Particles\explosion01-frame096.tga" />
+    <None Remove="Assets\Particles\explosion01-frame097.tga" />
+    <None Remove="Assets\Particles\explosion01-frame098.tga" />
+    <None Remove="Assets\Particles\explosion01-frame099.tga" />
+    <None Remove="Assets\Particles\explosion01-frame100.tga" />
     <None Remove="Assets\Pavilion_01.png" />
     <None Remove="Assets\Pavilion_02.png" />
+    <None Remove="Assets\Plant.png" />
+    <None Remove="Assets\Positions.png" />
     <None Remove="Assets\Racing_Lights.png" />
     <None Remove="Assets\RoadCircle.png" />
     <None Remove="Assets\Road_01_Tile_01.png" />
@@ -48,9 +155,11 @@
     <None Remove="Assets\Road_West_RightCorner_Main.png" />
     <None Remove="Assets\Rock_01.png" />
     <None Remove="Assets\Rock_02.png" />
+    <None Remove="Assets\Soil_Tile.png" />
     <None Remove="Assets\Start.png" />
     <None Remove="Assets\Tree_01.png" />
     <None Remove="Assets\Tree_02.png" />
+    <None Remove="Assets\Water_Tile.png" />
     <None Remove="VisualStudioAvatars.png" />
   </ItemGroup>
 
@@ -59,6 +168,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Bush_02.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\character_icons.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Crab.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Decor_Building_01.png">
@@ -76,13 +191,328 @@
     <Content Include="Assets\FinishVertical.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Assets\Goomba.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Grass_Tile.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\LC_Grass.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Assets\mainROAD_all_mip.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Particles\explosion01-frame001.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Particles\explosion01-frame002.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Particles\explosion01-frame003.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Particles\explosion01-frame004.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Particles\explosion01-frame005.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Particles\explosion01-frame006.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Particles\explosion01-frame007.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Particles\explosion01-frame008.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Particles\explosion01-frame009.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Particles\explosion01-frame010.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Particles\explosion01-frame011.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Particles\explosion01-frame012.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Particles\explosion01-frame013.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Particles\explosion01-frame014.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Particles\explosion01-frame015.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Particles\explosion01-frame016.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Particles\explosion01-frame017.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Particles\explosion01-frame018.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Particles\explosion01-frame019.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Particles\explosion01-frame020.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Particles\explosion01-frame021.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Particles\explosion01-frame022.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Particles\explosion01-frame023.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Particles\explosion01-frame024.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Particles\explosion01-frame025.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Particles\explosion01-frame026.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Particles\explosion01-frame027.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Particles\explosion01-frame028.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Particles\explosion01-frame029.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Particles\explosion01-frame030.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Particles\explosion01-frame031.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Particles\explosion01-frame032.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Particles\explosion01-frame033.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Particles\explosion01-frame034.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Particles\explosion01-frame035.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Particles\explosion01-frame036.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Particles\explosion01-frame037.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Particles\explosion01-frame038.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Particles\explosion01-frame039.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Particles\explosion01-frame040.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Particles\explosion01-frame041.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Particles\explosion01-frame042.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Particles\explosion01-frame043.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Particles\explosion01-frame044.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Particles\explosion01-frame045.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Particles\explosion01-frame046.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Particles\explosion01-frame047.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Particles\explosion01-frame048.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Particles\explosion01-frame049.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Particles\explosion01-frame050.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Particles\explosion01-frame051.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Particles\explosion01-frame052.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Particles\explosion01-frame053.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Particles\explosion01-frame054.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Particles\explosion01-frame055.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Particles\explosion01-frame056.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Particles\explosion01-frame057.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Particles\explosion01-frame058.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Particles\explosion01-frame059.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Particles\explosion01-frame060.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Particles\explosion01-frame061.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Particles\explosion01-frame062.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Particles\explosion01-frame063.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Particles\explosion01-frame064.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Particles\explosion01-frame065.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Particles\explosion01-frame066.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Particles\explosion01-frame067.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Particles\explosion01-frame068.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Particles\explosion01-frame069.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Particles\explosion01-frame070.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Particles\explosion01-frame071.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Particles\explosion01-frame072.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Particles\explosion01-frame073.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Particles\explosion01-frame074.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Particles\explosion01-frame075.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Particles\explosion01-frame076.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Particles\explosion01-frame077.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Particles\explosion01-frame078.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Particles\explosion01-frame079.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Particles\explosion01-frame080.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Particles\explosion01-frame081.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Particles\explosion01-frame082.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Particles\explosion01-frame083.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Particles\explosion01-frame084.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Particles\explosion01-frame085.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Particles\explosion01-frame086.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Particles\explosion01-frame087.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Particles\explosion01-frame088.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Particles\explosion01-frame089.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Particles\explosion01-frame090.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Particles\explosion01-frame091.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Particles\explosion01-frame092.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Particles\explosion01-frame093.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Particles\explosion01-frame094.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Particles\explosion01-frame095.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Particles\explosion01-frame096.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Particles\explosion01-frame097.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Particles\explosion01-frame098.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Particles\explosion01-frame099.tga">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Particles\explosion01-frame100.tga">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Pavilion_01.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Pavilion_02.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Plant.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Positions.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Racing_Lights.png">
@@ -172,6 +602,9 @@
     <Content Include="Assets\Rock_02.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Assets\Soil_Tile.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Assets\Start.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -181,9 +614,13 @@
     <Content Include="Assets\Tree_02.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Assets\Water_Tile.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Pfim" Version="0.11.1" />
     <PackageReference Include="System.Drawing.Common" Version="7.0.0-rc.2.22472.3" />
     <PackageReference Include="System.Drawing.Primitives" Version="4.3.0" />
   </ItemGroup>

@@ -14,5 +14,8 @@
         public string LapStringified { get; }
         public TimeSpan? Time { get; set; }
         public int OverallRanking { get; set; }
+        public ushort PositionInRace { get; set; }
+
+        public void OnNewRace();
     }
 }

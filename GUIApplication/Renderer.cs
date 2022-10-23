@@ -8,11 +8,14 @@ using CommonViewLib;
 using Controller;
 using Model;
 using Color = System.Drawing.Color;
+using Font = System.Drawing.Font;
 
 namespace GUIApplication
 {
     public sealed class Renderer : AbstractTrackRenderer, IDisposable
     {
+        public static readonly object RenderLock = new();
+
         private enum RenderMode
         {
             Straights,
@@ -24,8 +27,7 @@ namespace GUIApplication
 
             Participants,
         }
-
-        private readonly Race _race;
+        
         public Size FrameSize { get; set; }
 
         private Bitmap? _bitmap;
@@ -36,16 +38,40 @@ namespace GUIApplication
         private float _fitToFrameScaling = 1.0f;
         private float Scaling => _initialScaling * _fitToFrameScaling;
         private RenderMode _renderMode;
+        private bool _hasDrawnTrack;
+        private readonly Font _font;
+        private const string FontName = "Segoe UI";
 
-        public Renderer(Race race, Size windowSize, float scaling = 1.0f)
+        private uint _animationCounter, _fastAnimationCounter;
+        private readonly System.Timers.Timer _animationTimer;
+
+        public Renderer(Size windowSize, float scaling = 1.0f)
         {
+            Debug.Assert(windowSize.Width != 0);
+            Debug.Assert(windowSize.Height != 0);
+
+            _font = new Font(FontName, 10);
+
             FrameSize = windowSize;
             _initialScaling = scaling;
-            _race = race;
+                //_race = race;
             CalculateTrackSize();
             Debug.WriteLine("Width: {0}, Height: {0}",
                 BottomRightmostPoint.X - TopLeftmostPoint.X,
                 BottomRightmostPoint.Y - TopLeftmostPoint.Y);
+            
+            CalculateScaling();
+            SpriteManager.SetEmptyBitmap(FrameSize, Draw(FrameSize.Width, FrameSize.Height));
+
+            _animationTimer = new();
+            _animationTimer.Interval = 10;
+            _animationTimer.Elapsed += (_, _) =>
+            {
+                ++_fastAnimationCounter;
+                if (_fastAnimationCounter % 20 == 0)
+                    ++_animationCounter;
+            };
+            _animationTimer.Start();
         }
 
         private void CalculateScaling()
@@ -70,14 +96,19 @@ namespace GUIApplication
 
         public BitmapSource Draw()
         {
-            CalculateScaling();
+            lock (RenderLock)
+            {
+                CalculateScaling();
 
-            _bitmap = Draw(FrameSize.Width, FrameSize.Height);
-            return CreateBitmapSourceFromGdiBitmap(_bitmap);
+                _bitmap = Draw(FrameSize.Width, FrameSize.Height);
+                return CreateBitmapSourceFromGdiBitmap(_bitmap);
+            }
         }
 
-        public Bitmap Draw(int width, int height)
+        private Bitmap Draw(int width, int height)
         {
+            var hasDrawnTrack = _hasDrawnTrack;
+
             var bitmap = SpriteManager.GetEmptyBitmap(width, height);
             _bitmap = bitmap;
             
@@ -85,16 +116,29 @@ namespace GUIApplication
 
             _graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
             _graphics.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
-
+            
             foreach (var renderMode in Enum.GetValues<RenderMode>())
             {
-                X = -TopLeftmostPoint.X * Scaling;
-                Y = -TopLeftmostPoint.Y * Scaling;
+                if (hasDrawnTrack)
+                {
+                    if (renderMode != RenderMode.Participants)
+                        continue;
+                }
+                else
+                {
+                    if (renderMode == RenderMode.Participants)
+                    {
+                        _hasDrawnTrack = true;
+                        break;
+                    }
+                }
 
+                X = -TopLeftmostPoint.X * Scaling + 50;
+                Y = -TopLeftmostPoint.Y * Scaling + 50;
                 _renderMode = renderMode;
                 StartDrawTrack();
             }
-
+            
             _graphics.Dispose();
             _graphics = null;
 
@@ -174,12 +218,7 @@ namespace GUIApplication
                 // Lower-Left
                 new(x, y + visualSize.Height)
             };
-
-            if (section.SectionType == SectionTypes.RightCorner)
-            {
-                Debug.WriteLine($"RightCorner dir={direction}");
-            }
-
+            
             switch (_texturePack.DirectionToDegrees(section.SectionType, direction))
             {
                 case 0:
@@ -304,8 +343,168 @@ namespace GUIApplication
 
             if (_renderMode == RenderMode.Participants)
             {
+                //1 / (X + Y) < _random.NextDouble()
+                if (CurrentSectionIndex % 4 == 0)
+                {
+                    DrawDecorObject(section, direction, new PointF(x, y), visualSize);
+                }
 
+                if (sectionData.Left.Participant == null)
+                    return;
+                var bitmapIcons = SpriteManager.Load(@".\Assets\character_icons.png");
+                
+                if (sectionData.Left.Participant != null)
+                    DrawParticipant(bitmapIcons, section.SectionType, sectionData.Left, direction, false, new PointF(x, y), visualSize);
+
+                if (sectionData.Right.Participant != null)
+                    DrawParticipant(bitmapIcons, section.SectionType, sectionData.Right, direction, true, new PointF(x, y), visualSize);
             }
+        }
+
+        private void DrawDecorObject(Section section, Direction direction, PointF pointF, SizeF visualSize)
+        {
+            Debug.Assert(_graphics != null);
+
+            var random = new Random((int)(X + Y));
+            bool animation = DateTime.Now.Millisecond % 500 < 250;
+
+            var xFactor = 0.0f;
+            var yFactor = 0.0f;
+            switch (direction)
+            {
+                case Direction.North:
+                    xFactor = -1.1f;
+                    break;
+                case Direction.East:
+                    yFactor = -1.1f;
+                    break;
+                case Direction.South:
+                    xFactor = 0.2f;
+                    pointF = pointF with { X = X + visualSize.Width };
+                    break;
+                case Direction.West:
+                    xFactor = 0.2f;
+                    pointF = pointF with { Y = Y + visualSize.Height };
+                    break;
+            }
+
+            Bitmap? bitmap;
+            RectangleF srcRect;
+            SizeF renderSize;
+
+            switch (random.Next(0, 4))
+            {
+                case 0:
+                case 1:
+                    bitmap = SpriteManager.Load(@"Assets\Plant.png");
+                    srcRect = new(animation ? 75 : 11, 7, 62, 57);
+                    renderSize = new SizeF(
+                        srcRect.Width * 0.55f,
+                        srcRect.Height * 0.55f
+                    );
+                    break;
+                case 2:
+                    bitmap = SpriteManager.Load(@"Assets\Crab.png");
+                    srcRect = new(0, animation ? 32 : 0, 37, 32);
+                    renderSize = new SizeF(34.1f, 31.35f);
+                    break;
+                case 3:
+                    var animationFrame = _animationCounter % 12;
+                    bitmap = SpriteManager.Load(@"Assets\Goomba.png");
+                    Debug.Assert(bitmap != null);
+                    srcRect = new(animationFrame * 64, 0, 64, 64);
+                    renderSize = new SizeF(34.1f, 31.35f);
+                    break;
+                default:
+                    return;
+            }
+
+            if (bitmap == null)
+                return;
+
+            pointF = new(
+                pointF.X + renderSize.Width * xFactor,
+                pointF.Y + renderSize.Height * yFactor
+            );
+
+            PointF[] points = {
+                pointF,
+                pointF with { X = pointF.X + renderSize.Width },
+                pointF with { Y = pointF.Y + renderSize.Height }
+            };
+
+            if (pointF.Y <= 0)
+                return;
+
+            _graphics.DrawImage(bitmap, points, srcRect, GraphicsUnit.Pixel);
+        }
+
+        private void DrawParticipant(Bitmap bitmapIcons, SectionTypes sectionType, SectionData.Lane lane, Direction direction, bool isRightLane, PointF point, SizeF visualSize)
+        {
+            Debug.Assert(lane.Participant != null);
+            Debug.Assert(_graphics != null);
+
+            float size = Math.Min(visualSize.Width, visualSize.Height) / 3 * 2;
+            float percentage = (float)lane.Distance / SectionRegistry.Lengths[sectionType];
+            if (direction is Direction.East or Direction.West)
+            {
+                point = point with
+                {
+                    X = X + percentage * visualSize.Width * (direction is Direction.East ? 1 : -1),
+                    Y = Y + (isRightLane ? size : 0)
+                };
+            }
+            else
+            {
+                point = point with
+                {
+                    X = X + (isRightLane ? visualSize.Width - size : 0),
+                    Y = Y + percentage * visualSize.Height * (direction is Direction.South ? 1 : -1)
+                    /*X = X + (visualSize.Width - size) / 2,
+                    Y = Y + visualSize.Width / 3 * (isRightLane ? 1 : 2)*/
+                };
+            }
+
+            var points = new[]
+            {
+                point,
+                point with { X = point.X + size },
+                point with { Y = point.Y + size }
+            };
+
+            var character = ((Driver)lane.Participant).Character;
+            var offsets = SpriteOffsets.MinimapOffsets[character];
+            RectangleF srcRect = new(offsets.Left, offsets.Top, offsets.Width, offsets.Height);
+
+            _graphics.DrawImage(bitmapIcons, points, srcRect, GraphicsUnit.Pixel);
+
+            if (lane.Participant.Equipment.IsBroken)
+            {
+                uint index = _fastAnimationCounter % 100 + 1;
+                string indexStr = index.ToString("D3");
+                Debug.Assert(indexStr.Length == 3);
+                string fileName = @$"Assets\Particles\explosion01-frame{indexStr}.tga";
+                var bitmap = SpriteManager.LoadTga(fileName);
+                Debug.Assert(bitmap != null);
+
+                float width = bitmap.Width * 0.3f;
+                float height = bitmap.Height * 0.3f;
+                points[0] = point with { Y = point.Y - height / 2 };
+                points[1] = point with { X = point.X + width, Y = point.Y - height / 2};
+                points[2] = point with { Y = point.Y + height / 2 };
+                _graphics.DrawImage(bitmap, points);
+            }
+
+            var characterName = I18N.Translate(character.ToString());
+            var textSize = _graphics.MeasureString(characterName, _font);
+            var stringPoint = new PointF(
+                point.X + (size - textSize.Width) / 2,
+                point.Y + size + 2
+            );
+            var rectangle = new RectangleF(stringPoint.X - 2, stringPoint.Y - 2, textSize.Width + 2,
+                textSize.Height + 2);
+            _graphics.FillRectangle(new SolidBrush(Color.FromArgb(90, 0, 0, 0)), rectangle);
+            _graphics.DrawString(characterName, _font, new SolidBrush(Color.White), stringPoint);
         }
 
         private void DrawCorners(SectionTypes sectionType, PointF point, SizeF sectionSize, Direction direction)
@@ -374,10 +573,10 @@ namespace GUIApplication
                     break;
             }
 
-            var points = new PointF[]
+            var points = new[]
             {
                 point,
-                new(point.X + width, point.Y),
+                point with { X = point.X + width },
                 new(point.X, point.Y + height)
             };
 
@@ -388,6 +587,7 @@ namespace GUIApplication
         {
             _bitmap?.Dispose();
             _graphics?.Dispose();
+            _animationTimer.Dispose();
         }
     }
 }

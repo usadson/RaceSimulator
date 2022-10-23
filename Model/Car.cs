@@ -2,16 +2,17 @@
 {
     public class Car : IEquipment
     {
-        public int Quality { get; set; } = 100;
-        public int Performance { get; set; } = 2;
-        public int Speed { get; set; } = 4;
+        public int Quality { get; set; }
+        public int Performance { get; set; }
+        public int Speed { get; set; }
         public bool IsBroken { get; set; } = false;
+        public DateTime? WhenWasBroken { get; set; }
 
         public Car()
         {
             Random rand = new();
-            Speed = rand.Next(6, 16);
-            Performance = rand.Next(4, 8);
+            Speed = rand.Next(4, 6);
+            Performance = rand.Next(4, 6);
             Quality = rand.Next(60, 100);
         }
     }
