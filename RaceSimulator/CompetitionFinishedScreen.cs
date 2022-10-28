@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Controller;
+﻿using Controller;
 using Model;
 
 namespace RaceSimulator;
@@ -29,7 +24,7 @@ public class CompetitionFinishedScreen : Screen
                 .Split('\n');
 
         _namesText = Data.CurrentRace.Participants.Select(participant => I18N.Translate(participant.Name)).ToArray();
-        _resultsText = Data.CurrentRace.Participants.Select(participant => participant.OverallRanking.ToString()).ToArray();
+        _resultsText = Data.CurrentRace.Participants.Select(participant => participant.CompetitionPoints.ToString()).ToArray();
         
         foreach (var line in _congratsText)
             if (_longestLineLength < line.Length)

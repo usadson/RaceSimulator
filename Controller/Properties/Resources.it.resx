@@ -184,6 +184,12 @@ Grazie giocatori per aver giocato!</value>
   <data name="GameStarted" xml:space="preserve">
     <value>Il gioco è iniziato!</value>
   </data>
+  <data name="HeaderItemName" xml:space="preserve">
+    <value>Nome</value>
+  </data>
+  <data name="HeaderItemPoints" xml:space="preserve">
+    <value>Punti</value>
+  </data>
   <data name="HeaderParticipantsLabel" xml:space="preserve">
     <value>  Giocatori: </value>
   </data>
@@ -236,6 +242,9 @@ Grazie giocatori per aver giocato!</value>
   <data name="Menu" xml:space="preserve">
     <value>Menu</value>
   </data>
+  <data name="MenuCompetition" xml:space="preserve">
+    <value>Competizione</value>
+  </data>
   <data name="MenuExit" xml:space="preserve">
     <value>Esci</value>
   </data>
@@ -269,8 +278,17 @@ Grazie giocatori per aver giocato!</value>
   <data name="NewGameNs" xml:space="preserve">
     <value>Il prossimo gioco iniziarà tra SECONDS secondi!</value>
   </data>
+  <data name="NextTrackTitle" xml:space="preserve">
+    <value>Prossimo:</value>
+  </data>
   <data name="Peach" xml:space="preserve">
     <value>Pesca</value>
+  </data>
+  <data name="PointsFormatter" xml:space="preserve">
+    <value>{0} punti</value>
+  </data>
+  <data name="Points_1" xml:space="preserve">
+    <value>1 punto</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="Resources_it" type="System.Resources.ResXFileRef, System.Windows.Forms">
@@ -285,14 +303,8 @@ Grazie giocatori per aver giocato!</value>
   <data name="Rosalina" xml:space="preserve">
     <value>Rosalinda</value>
   </data>
-  <data name="sgsg" xml:space="preserve">
-    <value />
-  </data>
   <data name="SplashText" xml:space="preserve">
     <value>Carro di Mario</value>
-  </data>
-  <data name="String1" xml:space="preserve">
-    <value />
   </data>
   <data name="Toad" xml:space="preserve">
     <value>Rospo</value>

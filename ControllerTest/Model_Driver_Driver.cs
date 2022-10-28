@@ -32,6 +32,13 @@ public class Model_Driver_Driver
             Performance = 14
         };
         Assert.That(((Car)driver.Equipment).Performance, Is.EqualTo(14));
+
+        Assert.That(driver.Lap, Is.EqualTo(0));
+        Assert.That(driver.LapStringified, Is.EqualTo("1"));
+
+        driver.Lap = 3;
+        Assert.That(driver.Lap, Is.EqualTo(3));
+        Assert.That(driver.LapStringified, Is.EqualTo("3"));
     }
     
 }

@@ -10,7 +10,7 @@ public class Controller_TrackRegistry_Initialize
     {
         TrackRegistry.Initialize();
         
-        Assert.That(TrackRegistry.All, Has.Count.EqualTo(4));
+        Assert.That(TrackRegistry.All, Has.Count.EqualTo(3));
     }
 
     [TearDown]

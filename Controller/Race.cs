@@ -22,11 +22,18 @@ namespace Controller
         public event RaceEventHandler? ParticipantsOrderModified;
         public event RaceEventHandler? GameFinished;
 
+        public int DriversChangedEventListenerCount => DriversChanged?.GetInvocationList().Length ?? 0;
+        public int ParticipantsOrderModifiedEventListenerCount => ParticipantsOrderModified?.GetInvocationList().Length ?? 0;
+        public int GameFinishedEventListenerCount => GameFinished?.GetInvocationList().Length ?? 0;
+        public int ParticipantsLappedEventListenerCount => ParticipantLapped?.GetInvocationList().Length ?? 0;
+
         public delegate void ParticipantLappedEventHandler(Race sender, IParticipant participant, bool finished);
         public event ParticipantLappedEventHandler? ParticipantLapped;
         
         private readonly Timer _timer = new(10);
         private int _finishedParticipantsCount;
+        public bool IsRunning => _timer.Enabled;
+        public bool PulseRun;
 
         public Race(Track track, List<IParticipant> participants)
         {
@@ -46,6 +53,9 @@ namespace Controller
 
         private void OnTimerElapsed(object? sender, EventArgs args)
         {
+            if (PulseRun)
+                _timer.Stop();
+
             lock (this)
             {
                 MakeSureParticipantsAreSorted();
@@ -193,12 +203,7 @@ namespace Controller
         {
             lock (_positions)
             {
-                if (_positions.TryGetValue(section, out var data))
-                    return data;
-
-                SectionData newData = new();
-                _positions.Add(section, newData);
-                return newData;
+                return _positions[section];
             }
         }
 
@@ -256,35 +261,7 @@ namespace Controller
                 _positions.Add(section, data);
             }
         }
-
-#if disabled
-        private LinkedListNode<Section> LastSection()
-        {
-            if (Track.Sections.Last != null)
-                return Track.Sections.Last;
-
-            throw new NullReferenceException("Track.Sections.Last is null");
-        }
-
-        private int DistanceFromStart(Section section)
-        {
-            var sectionIt = Track.Sections.Find(section);
-            Debug.Assert(sectionIt != null);
-
-            var it = sectionIt.Previous ?? LastSection();
-            int distance = SectionRegistry.Lengths[section.SectionType];
-
-            while (it.Value.SectionType != SectionTypes.Finish)
-            {
-                it = it.Previous ?? LastSection();
-                Debug.Assert(it != null);
-                distance += SectionRegistry.Lengths[it.Value.SectionType];
-            }
-
-            return distance;
-        }
-#endif // disabled
-
+        
         [Conditional("DEBUG")]
         private void VerifyPositions()
         {
@@ -343,14 +320,6 @@ namespace Controller
                         _committedPositions.Add(entry.Key, (SectionData)entry.Value.Clone());
                 }
             }
-        }
-
-        private bool ArePositionsLocked()
-        {
-            var wasLocked = !Monitor.TryEnter(_positions);
-            if (!wasLocked)
-                Monitor.Exit(_positions);
-            return wasLocked;
         }
     }
 }

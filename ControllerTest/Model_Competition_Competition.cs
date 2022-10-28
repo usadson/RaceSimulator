@@ -8,7 +8,7 @@ public class Model_Competition_Competition
     [Test]
     public void EmptyOnInit()
     {
-        Competition competition = new();
+        Competition competition = new(Cup.Banana);
         Assert.That(competition.Participants, Is.Empty);
         Assert.That(competition.Tracks, Is.Empty);
     }
@@ -26,7 +26,7 @@ public class Model_Competition_Competition
         Queue<Track> tracks = new();
         tracks.Enqueue(track);
         
-        Competition competition = new();
+        Competition competition = new(Cup.Star);
         Assert.That(competition.Participants, Is.Empty);
         Assert.That(competition.Tracks, Is.Empty);
 

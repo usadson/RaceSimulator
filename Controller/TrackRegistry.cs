@@ -95,7 +95,7 @@ namespace Controller
             TrackByName.Clear();
         }
 
-        public static void Register(Track track)
+        private static void Register(Track track)
         {
             All.Add(track);
 

@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using Controller.Properties;
 using Model;
 
 namespace Controller
@@ -17,7 +18,7 @@ namespace Controller
                     throw new NullReferenceException();
                 return _currentRaceImpl;
             }
-            private set => _currentRaceImpl = value; 
+            set => _currentRaceImpl = value; 
         }
 
         public static bool HasRace() => _currentRaceImpl != null;
@@ -31,7 +32,10 @@ namespace Controller
 
         public static void Initialize()
         {
-            CurrentCompetition = new Competition();
+            Speed = 1.0f;
+            CurrentCompetition = new Competition(Cup.Mushroom);
+            RaceInCompetition = 0;
+            _currentRaceImpl = null;
             PopulateParticipants();
             PopulateTracks();
         }
@@ -67,16 +71,16 @@ namespace Controller
             }
         }
 
-        private static void AssignCupToCompetition(Cup cup)
+        private static void AssignCupToCompetition()
         {
             Debug.Assert(CurrentCompetition != null);
-            CurrentCompetition.Tracks = new(TrackRegistry.TracksByCup[cup]);
+            CurrentCompetition.Tracks = new(TrackRegistry.TracksByCup[CurrentCompetition.Cup]);
         }
 
         public static void PopulateTracks()
         {
             TrackRegistry.Initialize();
-            AssignCupToCompetition(Cup.Mushroom);
+            AssignCupToCompetition();
         }
 
         public static void NextRace()
@@ -95,7 +99,7 @@ namespace Controller
                 ++RaceInCompetition;
 
                 foreach (var participant in CurrentCompetition.Participants)
-                    participant.OnNewRace();
+                    participant.OnNewRace(CurrentCompetition);
 
                 CurrentRace = new Race(track, CurrentCompetition.Participants);
                 NewRaceStarting?.Invoke(CurrentRace);
@@ -104,6 +108,11 @@ namespace Controller
             {
                 _currentRaceImpl = null;
             }
+        }
+
+        public static Resources CreateResources()
+        {
+            return new();
         }
     }
 }

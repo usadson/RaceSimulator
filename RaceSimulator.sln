@@ -13,7 +13,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ControllerTest", "Controlle
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GUIApplication", "GUIApplication\GUIApplication.csproj", "{B4AF081F-D31C-4A66-A205-7B32AF2DC58E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommonViewLib", "CommonViewLib\CommonViewLib.csproj", "{88D3A451-529C-4FF6-A8D5-4F31A69E8588}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommonViewLib", "CommonViewLib\CommonViewLib.csproj", "{88D3A451-529C-4FF6-A8D5-4F31A69E8588}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommonViewLibTest", "CommonViewLibTest\CommonViewLibTest.csproj", "{32184A79-591B-40D5-BF42-5D1AAAE24CEB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GUIApplicationTests", "GUIApplicationTests\GUIApplicationTests.csproj", "{73360AE7-E820-45BE-B756-563B3CF22880}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +49,14 @@ Global
 		{88D3A451-529C-4FF6-A8D5-4F31A69E8588}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{88D3A451-529C-4FF6-A8D5-4F31A69E8588}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{88D3A451-529C-4FF6-A8D5-4F31A69E8588}.Release|Any CPU.Build.0 = Release|Any CPU
+		{32184A79-591B-40D5-BF42-5D1AAAE24CEB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{32184A79-591B-40D5-BF42-5D1AAAE24CEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{32184A79-591B-40D5-BF42-5D1AAAE24CEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{32184A79-591B-40D5-BF42-5D1AAAE24CEB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{73360AE7-E820-45BE-B756-563B3CF22880}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73360AE7-E820-45BE-B756-563B3CF22880}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73360AE7-E820-45BE-B756-563B3CF22880}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{73360AE7-E820-45BE-B756-563B3CF22880}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

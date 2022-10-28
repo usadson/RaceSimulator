@@ -1,35 +1,37 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Globalization;
-using System.Linq;
+﻿using System.Globalization;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Markup;
+using Controller;
 
 namespace GUIApplication;
 
 /// <summary>
 /// Interaction logic for App.xaml
 /// </summary>
-public partial class App : Application
+public partial class App
 {
     protected override void OnStartup(StartupEventArgs e)
     {
-        var vCulture = new CultureInfo("it-IT");
+        SetLanguage("it-IT");
 
+        FrameworkElement.LanguageProperty.OverrideMetadata(
+            typeof(FrameworkElement),
+            new FrameworkPropertyMetadata(
+                XmlLanguage.GetLanguage(CultureInfo.CurrentCulture.IetfLanguageTag)));
+
+        base.OnStartup(e);
+    }
+
+    public static void SetLanguage(string name)
+    {
+        var vCulture = new CultureInfo(name);
+        
         Thread.CurrentThread.CurrentCulture = vCulture;
         Thread.CurrentThread.CurrentUICulture = vCulture;
         CultureInfo.DefaultThreadCurrentCulture = vCulture;
         CultureInfo.DefaultThreadCurrentUICulture = vCulture;
 
-        FrameworkElement.LanguageProperty.OverrideMetadata(
-            typeof(FrameworkElement),
-            new FrameworkPropertyMetadata(
-                XmlLanguage.GetLanguage(CultureInfo.CurrentCulture.IetfLanguageTag)));  
-
-        base.OnStartup(e);
+        I18N.OnLanguageChanged();
     }
 }

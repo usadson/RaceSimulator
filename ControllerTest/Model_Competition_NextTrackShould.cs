@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using Model;
+﻿using Model;
 
 namespace ControllerTest
 {
@@ -16,7 +10,7 @@ namespace ControllerTest
         [SetUp]
         public void SetUp()
         {
-            _competition = new();
+            _competition = new(Cup.Lightning);
         }
 
         [Test]

@@ -7,10 +7,15 @@
         xmlns:guiApplication="clr-namespace:GUIApplication"
         x:Class="GUIApplication.MainWindow"
         mc:Ignorable="d"
-        Title="{x:Static resx:Resources.WindowTitle}" Height="720" Width="1280">
-<!--
-    xmlns:d2d="clr-namespace:Direct2D;assembly=Direct2D"
-    -->
+        Height="720" Width="1280" SizeChanged="Window_SizeChanged"
+        >
+    <!--Title="{Binding WindowTitle, Source={StaticResource Resources}}" >-->
+
+    <!--<Window.Resources>
+        <ObjectDataProvider x:Key="Resources"
+                            ObjectType="{x:Type resx:Resources}" 
+                            MethodName="GetResourceInstance"/>-->
+    <!--</Window.Resources>-->
     <Window.DataContext>
         <guiApplication:ParticipantsView/>
     </Window.DataContext>
@@ -22,14 +27,24 @@
         </ImageBrush>
     </Window.Background>
     <DockPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+        <Image Name="VictoryImage"
+               Visibility="Collapsed"
+               Stretch="Fill" 
+               Source="Assets/Victory.png"
+               />
+
         <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  DockPanel.Dock="Top">
             <DockPanel HorizontalAlignment="Stretch" VerticalAlignment="Top">
                 <Menu x:Name="MenuPanel" DockPanel.Dock="Top" Height="20" VerticalAlignment="Top">
                     <MenuItem x:Name="MenuButton" Header="{x:Static resx:Resources.Menu}">
-                        <MenuItem Header="{x:Static resx:Resources.MenuParticipantStatistics}" Click="MenuParticipants_OnClick"/>
+                        <MenuItem Header="{x:Static resx:Resources.MenuCompetition}" Click="MenuCompetition_OnClick"/>
                         <MenuItem Header="{x:Static resx:Resources.MenuRaceStatistics}" Click="MenuRace_OnClick"/>
                         <Separator/>
                         <MenuItem Header="{x:Static resx:Resources.MenuExit}" Click="MenuExit_OnClick"/>
+                        <MenuItem Header="{x:Static resx:Resources.MenuLanguage}">
+                            <MenuItem Header="{x:Static resx:Resources.LanguageEnglish}" Click="MenuLanguage_English_OnClick"/>
+                            <MenuItem Header="{x:Static resx:Resources.LanguageItalian}" Click="MenuLanguage_Italian_OnClick"/>
+                        </MenuItem>
                     </MenuItem>
                 </Menu>
             </DockPanel>
@@ -67,7 +82,7 @@
             <!--
             <d2d:Direct2DControl x:Name="GameFrame" />
             -->
-            <Image x:Name="GameFrame" Margin="0,76,0,0" Height="380" HorizontalAlignment="Stretch" VerticalAlignment="Top"/>
+            <Image x:Name="GameFrame" Margin="0,76,0,0" Height="380" Width="1280" HorizontalAlignment="Stretch" VerticalAlignment="Top"/>
         </Grid>
     </DockPanel>
 </Window>

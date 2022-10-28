@@ -47,6 +47,9 @@ namespace GUIApplication
 
         public Renderer(Size windowSize, float scaling = 1.0f)
         {
+            if (!Data.HasRace())
+                return;
+
             Debug.Assert(windowSize.Width != 0);
             Debug.Assert(windowSize.Height != 0);
 
@@ -76,6 +79,9 @@ namespace GUIApplication
 
         private void CalculateScaling()
         {
+            if (!Data.HasRace())
+                return;
+
             var size = new SizeF(BottomRightmostPoint.X - TopLeftmostPoint.X, BottomRightmostPoint.Y - TopLeftmostPoint.Y);
             Debug.Assert(size.Width != 0);
             Debug.Assert(size.Height != 0);
@@ -88,9 +94,13 @@ namespace GUIApplication
 
         private void CalculateTrackSize()
         {
+            if (!Data.HasRace())
+                return;
+
             _fitToFrameScaling = 1 / _initialScaling;
             _graphics = null;
-            StartDrawTrack();
+            lock(RenderLock)
+                StartDrawTrack();
             _fitToFrameScaling = 1;
         }
 
@@ -205,7 +215,6 @@ namespace GUIApplication
             var imageRect = _texturePack.GetBitmapSubsection(section.SectionType, direction, bitmap);
 
             var offset = new PointF(0, 0);
-            //var offset = _texturePack.GetOffsetDirectionChange(section.SectionType, direction));
             var x = CurrentPoint.X + offset.X * Scaling;
             var y = CurrentPoint.Y + offset.Y * Scaling;
 
@@ -343,10 +352,9 @@ namespace GUIApplication
 
             if (_renderMode == RenderMode.Participants)
             {
-                //1 / (X + Y) < _random.NextDouble()
                 if (CurrentSectionIndex % 4 == 0)
                 {
-                    DrawDecorObject(section, direction, new PointF(x, y), visualSize);
+                    DrawDecorObject(direction, new PointF(x, y), visualSize);
                 }
 
                 if (sectionData.Left.Participant == null)
@@ -361,7 +369,7 @@ namespace GUIApplication
             }
         }
 
-        private void DrawDecorObject(Section section, Direction direction, PointF pointF, SizeF visualSize)
+        private void DrawDecorObject(Direction direction, PointF pointF, SizeF visualSize)
         {
             Debug.Assert(_graphics != null);
 
@@ -427,7 +435,8 @@ namespace GUIApplication
                 pointF.Y + renderSize.Height * yFactor
             );
 
-            PointF[] points = {
+            PointF[] points =
+            {
                 pointF,
                 pointF with { X = pointF.X + renderSize.Width },
                 pointF with { Y = pointF.Y + renderSize.Height }
@@ -444,8 +453,8 @@ namespace GUIApplication
             Debug.Assert(lane.Participant != null);
             Debug.Assert(_graphics != null);
 
-            float size = Math.Min(visualSize.Width, visualSize.Height) / 3 * 2;
-            float percentage = (float)lane.Distance / SectionRegistry.Lengths[sectionType];
+            var size = Math.Min(visualSize.Width, visualSize.Height) / 3 * 2;
+            var percentage = (float)lane.Distance / SectionRegistry.Lengths[sectionType];
             if (direction is Direction.East or Direction.West)
             {
                 point = point with
@@ -458,10 +467,8 @@ namespace GUIApplication
             {
                 point = point with
                 {
-                    X = X + (isRightLane ? visualSize.Width - size : 0),
+                    X = X + (isRightLane ? size : 0),
                     Y = Y + percentage * visualSize.Height * (direction is Direction.South ? 1 : -1)
-                    /*X = X + (visualSize.Width - size) / 2,
-                    Y = Y + visualSize.Width / 3 * (isRightLane ? 1 : 2)*/
                 };
             }
 
@@ -529,8 +536,6 @@ namespace GUIApplication
                     DrawCorner(_texturePack.Load(sectionType, Directions.Opposite(direction), right),
                         sectionType, point, sectionSize, direction);
 
-                    break;
-                default:
                     break;
             }
         }

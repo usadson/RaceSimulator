@@ -35,7 +35,11 @@ namespace Model
         public bool Changed
         {
             get => Left.Changed || Right.Changed;
-            set => Left.Changed = Right.Changed = value;
+            set
+            {
+                Left.Changed = value;
+                Right.Changed = value;
+            }
         }
 
         public Lane Left { get; } = new();

@@ -23,12 +23,15 @@ public abstract class AbstractTrackRenderer
 
     protected void StartDrawTrack()
     {
+        if (!Data.HasRace())
+            return;
+
         _direction = Data.CurrentRace.Track.BeginDirection;
         CurrentSectionIndex = 0;
 
         var sections = Data.CurrentRace.Track.Sections;
         var it = sections.First;
-        while (it != null)
+        while (it != null && it.Value.Parent == Data.CurrentRace.Track)
         {
             DrawSection(it.Value, it.Next?.Value, Data.CurrentRace.GetSectionData(it.Value));
 
@@ -87,8 +90,6 @@ public abstract class AbstractTrackRenderer
                     return;
                 X -= nextSymbolSize.Value.Width;
                 break;
-            default:
-                throw new ArgumentOutOfRangeException();
         }
     }
 

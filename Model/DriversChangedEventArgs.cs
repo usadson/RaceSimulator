@@ -1,14 +1,11 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿namespace Model;
 
-namespace Model
+public class DriversChangedEventArgs : EventArgs
 {
-    public class DriversChangedEventArgs : EventArgs
-    {
-        public Track Track { get; init; }
+    public Track Track { get; init; }
 
-        public DriversChangedEventArgs([DisallowNull] Track track)
-        {
-            Track = track;
-        }
+    public DriversChangedEventArgs(Track track)
+    {
+        Track = track;
     }
 }

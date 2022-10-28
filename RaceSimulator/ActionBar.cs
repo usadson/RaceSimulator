@@ -1,18 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace RaceSimulator
+﻿namespace RaceSimulator
 {
     public class ActionBar
     {
         private DateTime? _timer;
         private ulong? _messageVisibleFor;
         private string _message = "";
-        private bool _isNew = false;
+        private bool _isNew;
 
         public void Show(string message, ulong milliseconds)
         {
@@ -46,12 +39,12 @@ namespace RaceSimulator
                 return;
             }
 
-            if (_isNew)
-            {
-                _isNew = false;
-                Console.SetCursorPosition((Console.WindowWidth - _message.Length) / 2, y);
-                Console.Write(_message);
-            }
+            if (!_isNew) 
+                return;
+
+            _isNew = false;
+            Console.SetCursorPosition((Console.WindowWidth - _message.Length) / 2, y);
+            Console.Write(_message);
         }
     }
 }

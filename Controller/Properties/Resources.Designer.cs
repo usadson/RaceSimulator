@@ -29,7 +29,7 @@ namespace Controller.Properties {
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Resources() {
+        public Resources() {
         }
         
         /// <summary>
@@ -106,6 +106,42 @@ namespace Controller.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        public static string HeaderItemName {
+            get {
+                return ResourceManager.GetString("HeaderItemName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Points.
+        /// </summary>
+        public static string HeaderItemPoints {
+            get {
+                return ResourceManager.GetString("HeaderItemPoints", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to English.
+        /// </summary>
+        public static string LanguageEnglish {
+            get {
+                return ResourceManager.GetString("LanguageEnglish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Italian.
+        /// </summary>
+        public static string LanguageItalian {
+            get {
+                return ResourceManager.GetString("LanguageItalian", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Menu.
         /// </summary>
         public static string Menu {
@@ -115,11 +151,29 @@ namespace Controller.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Competition.
+        /// </summary>
+        public static string MenuCompetition {
+            get {
+                return ResourceManager.GetString("MenuCompetition", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Exit.
         /// </summary>
         public static string MenuExit {
             get {
                 return ResourceManager.GetString("MenuExit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Language.
+        /// </summary>
+        public static string MenuLanguage {
+            get {
+                return ResourceManager.GetString("MenuLanguage", resourceCulture);
             }
         }
         
@@ -147,6 +201,33 @@ namespace Controller.Properties {
         public static string Mushroom {
             get {
                 return ResourceManager.GetString("Mushroom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Next Up:.
+        /// </summary>
+        public static string NextTrackTitle {
+            get {
+                return ResourceManager.GetString("NextTrackTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1 point.
+        /// </summary>
+        public static string Points_1 {
+            get {
+                return ResourceManager.GetString("Points_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} points.
+        /// </summary>
+        public static string PointsFormatter {
+            get {
+                return ResourceManager.GetString("PointsFormatter", resourceCulture);
             }
         }
         

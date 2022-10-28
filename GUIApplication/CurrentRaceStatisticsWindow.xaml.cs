@@ -16,11 +16,11 @@ using DispatcherPriority = System.Windows.Threading.DispatcherPriority;
 namespace GUIApplication;
 
 /// <summary>
-/// Interaction logic for ParticipantStatisticsWindow.xaml
+/// Interaction logic for CurrentRaceStatisticsWindow.xaml
 /// </summary>
-public partial class ParticipantStatisticsWindow
+public partial class CurrentRaceStatisticsWindow
 {
-    public ParticipantStatisticsWindow()
+    public CurrentRaceStatisticsWindow()
     {
         InitializeComponent();
 

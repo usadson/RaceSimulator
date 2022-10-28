@@ -1,0 +1,68 @@
+﻿<Window x:Class="GUIApplication.CurrentRaceStatisticsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GUIApplication"
+        mc:Ignorable="d"
+        xmlns:resx="clr-namespace:Controller.Properties;assembly=Controller"
+        Title="{x:Static resx:Resources.MenuRaceStatistics}"
+        Height="720" Width="450">
+    <Window.DataContext>
+        <local:ParticipantsOfRace/>
+    </Window.DataContext>
+    <Window.Resources>
+        <Style TargetType="ListViewItem">
+            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        </Style>
+        <Style TargetType="{x:Type GridViewColumnHeader}">
+            <Setter Property="Visibility" Value="Collapsed" />
+        </Style>
+    </Window.Resources>
+    <StackPanel Orientation="Vertical">
+        <StackPanel Orientation="Horizontal" Margin="0 6 0 0">
+            <TextBlock Margin="0 0 5 0" Text="{x:Static resx:Resources.TrackTitle}" FontSize="22" FontWeight="SemiBold"/>
+            <TextBlock Text="{Binding TrackName}" FontSize="22"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Margin="0 0 0 8">
+            <TextBlock Margin="0 0 5 0" Text="{x:Static resx:Resources.NextTrackTitle}" FontSize="22" FontWeight="SemiBold"/>
+            <TextBlock Text="{Binding NextTrackName}" FontSize="22"/>
+        </StackPanel>
+        <Viewbox HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Stretch="Uniform">
+            <ListView ItemsSource="{Binding Participants}" FontSize="50" HorizontalAlignment="Stretch">
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="ListBoxItem">
+                        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                    </Style>
+                </ListBox.ItemContainerStyle>
+                <ListView.View>
+                    <GridView AllowsColumnReorder="true">
+                        <GridViewColumn Width="Auto">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Image RenderTransformOrigin="16,0">
+                                        <Image.Source>
+                                            <CroppedBitmap Source="Assets/Positions.png" SourceRect="{Binding PositionRect}"></CroppedBitmap>
+                                        </Image.Source>
+                                    </Image>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Width="Auto">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Image RenderTransformOrigin="16,0">
+                                        <Image.Source>
+                                            <CroppedBitmap Source="Assets/character_icons.png" SourceRect="{Binding PictureRect}"></CroppedBitmap>
+                                        </Image.Source>
+                                    </Image>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding Path=Name}"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </Viewbox>
+    </StackPanel>
+</Window>

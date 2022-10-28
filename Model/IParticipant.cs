@@ -13,9 +13,10 @@
         public int? Ranking { get; set; }
         public string LapStringified { get; }
         public TimeSpan? Time { get; set; }
-        public int OverallRanking { get; set; }
+        public int CompetitionPoints { get; set; }
         public ushort PositionInRace { get; set; }
+        public ushort PositionInCompetition { get; }
 
-        public void OnNewRace();
+        public void OnNewRace(Competition competition);
     }
 }

@@ -159,6 +159,7 @@
     <None Remove="Assets\Start.png" />
     <None Remove="Assets\Tree_01.png" />
     <None Remove="Assets\Tree_02.png" />
+    <None Remove="Assets\Victory.png" />
     <None Remove="Assets\Water_Tile.png" />
     <None Remove="VisualStudioAvatars.png" />
   </ItemGroup>
@@ -612,6 +613,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Tree_02.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Victory.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Water_Tile.png">

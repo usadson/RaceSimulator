@@ -132,11 +132,29 @@
   <data name="CompetitionTitle" xml:space="preserve">
     <value>Competition:</value>
   </data>
+  <data name="HeaderItemName" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="HeaderItemPoints" xml:space="preserve">
+    <value>Points</value>
+  </data>
+  <data name="LanguageEnglish" xml:space="preserve">
+    <value>English</value>
+  </data>
+  <data name="LanguageItalian" xml:space="preserve">
+    <value>Italian</value>
+  </data>
   <data name="Menu" xml:space="preserve">
     <value>Menu</value>
   </data>
+  <data name="MenuCompetition" xml:space="preserve">
+    <value>Competition</value>
+  </data>
   <data name="MenuExit" xml:space="preserve">
     <value>Exit</value>
+  </data>
+  <data name="MenuLanguage" xml:space="preserve">
+    <value>Language</value>
   </data>
   <data name="MenuParticipantStatistics" xml:space="preserve">
     <value>Participant Statistics</value>
@@ -146,6 +164,15 @@
   </data>
   <data name="Mushroom" xml:space="preserve">
     <value>Mushroom</value>
+  </data>
+  <data name="NextTrackTitle" xml:space="preserve">
+    <value>Next Up:</value>
+  </data>
+  <data name="PointsFormatter" xml:space="preserve">
+    <value>{0} points</value>
+  </data>
+  <data name="Points_1" xml:space="preserve">
+    <value>1 point</value>
   </data>
   <data name="TrackTitle" xml:space="preserve">
     <value>Track:</value>

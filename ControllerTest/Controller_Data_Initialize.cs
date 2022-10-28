@@ -16,5 +16,11 @@ public class Controller_Data_Initialize
     {
         Data.Reset();
     }
+
+    [Test]
+    public void CreateResourcesTest()
+    {
+        Assert.That(Data.CreateResources(), Is.Not.Null);
+    }
     
 }
