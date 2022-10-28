@@ -29,7 +29,7 @@ namespace Controller.Properties {
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        public Resources() {
+        internal Resources() {
         }
         
         /// <summary>
@@ -138,6 +138,222 @@ namespace Controller.Properties {
         public static string LanguageItalian {
             get {
                 return ResourceManager.GetString("LanguageItalian", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to d.
+        /// </summary>
+        public static string Letter_of_BabyDaisy {
+            get {
+                return ResourceManager.GetString("Letter of BabyDaisy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to l.
+        /// </summary>
+        public static string Letter_of_BabyLuigi {
+            get {
+                return ResourceManager.GetString("Letter of BabyLuigi", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to m.
+        /// </summary>
+        public static string Letter_of_BabyMario {
+            get {
+                return ResourceManager.GetString("Letter of BabyMario", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to p.
+        /// </summary>
+        public static string Letter_of_BabyPeach {
+            get {
+                return ResourceManager.GetString("Letter of BabyPeach", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to S.
+        /// </summary>
+        public static string Letter_of_Birdo {
+            get {
+                return ResourceManager.GetString("Letter of Birdo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to B.
+        /// </summary>
+        public static string Letter_of_Bowser {
+            get {
+                return ResourceManager.GetString("Letter of Bowser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to b.
+        /// </summary>
+        public static string Letter_of_BowserJunior {
+            get {
+                return ResourceManager.GetString("Letter of BowserJunior", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ♠.
+        /// </summary>
+        public static string Letter_of_Daisy {
+            get {
+                return ResourceManager.GetString("Letter of Daisy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ♣.
+        /// </summary>
+        public static string Letter_of_DiddyKong {
+            get {
+                return ResourceManager.GetString("Letter of DiddyKong", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ✶.
+        /// </summary>
+        public static string Letter_of_DonkeyKong {
+            get {
+                return ResourceManager.GetString("Letter of DonkeyKong", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to d.
+        /// </summary>
+        public static string Letter_of_DryBones {
+            get {
+                return ResourceManager.GetString("Letter of DryBones", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to D.
+        /// </summary>
+        public static string Letter_of_DryBowser {
+            get {
+                return ResourceManager.GetString("Letter of DryBowser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to F.
+        /// </summary>
+        public static string Letter_of_FunkyKong {
+            get {
+                return ResourceManager.GetString("Letter of FunkyKong", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to B.
+        /// </summary>
+        public static string Letter_of_KingBoo {
+            get {
+                return ResourceManager.GetString("Letter of KingBoo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to K.
+        /// </summary>
+        public static string Letter_of_KoopaTroopa {
+            get {
+                return ResourceManager.GetString("Letter of KoopaTroopa", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to L.
+        /// </summary>
+        public static string Letter_of_Luigi {
+            get {
+                return ResourceManager.GetString("Letter of Luigi", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to M.
+        /// </summary>
+        public static string Letter_of_Mario {
+            get {
+                return ResourceManager.GetString("Letter of Mario", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to P.
+        /// </summary>
+        public static string Letter_of_Peach {
+            get {
+                return ResourceManager.GetString("Letter of Peach", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to R.
+        /// </summary>
+        public static string Letter_of_Rosalina {
+            get {
+                return ResourceManager.GetString("Letter of Rosalina", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to T.
+        /// </summary>
+        public static string Letter_of_Toad {
+            get {
+                return ResourceManager.GetString("Letter of Toad", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to t.
+        /// </summary>
+        public static string Letter_of_Toadette {
+            get {
+                return ResourceManager.GetString("Letter of Toadette", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to W.
+        /// </summary>
+        public static string Letter_of_Waluigi {
+            get {
+                return ResourceManager.GetString("Letter of Waluigi", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to w.
+        /// </summary>
+        public static string Letter_of_Wario {
+            get {
+                return ResourceManager.GetString("Letter of Wario", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string Letter_of_Yoshi {
+            get {
+                return ResourceManager.GetString("Letter of Yoshi", resourceCulture);
             }
         }
         

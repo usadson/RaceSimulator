@@ -29,7 +29,8 @@ namespace Controller
                         .Turn(Direction.North)
                         .GoStraight(10)
                         .Build(),
-                3, Direction.North, true));
+                3
+            ));
             Register(new Track(
                 Cup.Mushroom, 
                 "Moo Moo Meadows", 
@@ -56,8 +57,6 @@ namespace Controller
                 Cup.Mushroom, 
                 "Mushroom Gorge",
                 new TrackSectionsBuilder(Direction.North)
-                    .Turn(Direction.East)
-                    .GoStraight(12)
                     .AddStart()
                     .AddStart()
                     .AddStart()
@@ -65,27 +64,17 @@ namespace Controller
                     .AddStart()
                     .AddStart()
                     .Finish()
-                    .GoStraight(19)
-                    .Turn(Direction.South)
-                    .GoStraight(1)
-                    .Turn(Direction.West)
-                    .GoStraight(30)
-                    .Turn(Direction.South)
-                    .GoStraight(1)
+                    .GoStraight(3)
                     .Turn(Direction.East)
                     .GoStraight(30)
                     .Turn(Direction.South)
-                    .GoStraight(1)
-                    .Turn(Direction.West)
-                    .GoStraight(40)
-                    .Turn(Direction.North)
-                    .GoStraight(5)
-                    .Turn(Direction.East)
                     .GoStraight(10)
+                    .Turn(Direction.West)
+                    .GoStraight(30)
+                    .Turn(Direction.North)
                     .Build(),
                 3
             ));
-            //Register(new Track(Cup.Mushroom, "Toads Factory", Array.Empty<SectionTypes>(), 3));
         }
 
         public static void Reset()

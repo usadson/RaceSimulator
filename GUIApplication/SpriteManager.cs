@@ -12,9 +12,6 @@ namespace GUIApplication;
 
 public static class SpriteManager
 {
-#if LOCKING_WORKS
-    private static readonly object Lock = new();
-#endif
     private static readonly Dictionary<string, Bitmap?> BitmapCache = new();
     public static readonly Dictionary<string, GCHandle> BitmapHandles = new();
 

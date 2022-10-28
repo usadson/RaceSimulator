@@ -1,7 +1,4 @@
-﻿using System.Drawing;
-using System.Windows.Media.Imaging;
-
-namespace GUIApplicationTests;
+﻿namespace GUIApplicationTests;
 
 [TestFixture]
 internal class RendererTests
@@ -9,6 +6,9 @@ internal class RendererTests
     [OneTimeSetUp]
     public void OneTimeSetUp()
     {
+        Data.Reset();
+        I18N.Reset();
+
         I18N.Initialize();
         Data.Initialize();
         Data.NextRace();

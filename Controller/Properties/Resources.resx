@@ -144,6 +144,78 @@
   <data name="LanguageItalian" xml:space="preserve">
     <value>Italian</value>
   </data>
+  <data name="Letter of BabyDaisy" xml:space="preserve">
+    <value>d</value>
+  </data>
+  <data name="Letter of BabyLuigi" xml:space="preserve">
+    <value>l</value>
+  </data>
+  <data name="Letter of BabyMario" xml:space="preserve">
+    <value>m</value>
+  </data>
+  <data name="Letter of BabyPeach" xml:space="preserve">
+    <value>p</value>
+  </data>
+  <data name="Letter of Birdo" xml:space="preserve">
+    <value>S</value>
+  </data>
+  <data name="Letter of Bowser" xml:space="preserve">
+    <value>B</value>
+  </data>
+  <data name="Letter of BowserJunior" xml:space="preserve">
+    <value>b</value>
+  </data>
+  <data name="Letter of Daisy" xml:space="preserve">
+    <value>♠</value>
+  </data>
+  <data name="Letter of DiddyKong" xml:space="preserve">
+    <value>♣</value>
+  </data>
+  <data name="Letter of DonkeyKong" xml:space="preserve">
+    <value>✶</value>
+  </data>
+  <data name="Letter of DryBones" xml:space="preserve">
+    <value>d</value>
+  </data>
+  <data name="Letter of DryBowser" xml:space="preserve">
+    <value>D</value>
+  </data>
+  <data name="Letter of FunkyKong" xml:space="preserve">
+    <value>F</value>
+  </data>
+  <data name="Letter of KingBoo" xml:space="preserve">
+    <value>B</value>
+  </data>
+  <data name="Letter of KoopaTroopa" xml:space="preserve">
+    <value>K</value>
+  </data>
+  <data name="Letter of Luigi" xml:space="preserve">
+    <value>L</value>
+  </data>
+  <data name="Letter of Mario" xml:space="preserve">
+    <value>M</value>
+  </data>
+  <data name="Letter of Peach" xml:space="preserve">
+    <value>P</value>
+  </data>
+  <data name="Letter of Rosalina" xml:space="preserve">
+    <value>R</value>
+  </data>
+  <data name="Letter of Toad" xml:space="preserve">
+    <value>T</value>
+  </data>
+  <data name="Letter of Toadette" xml:space="preserve">
+    <value>t</value>
+  </data>
+  <data name="Letter of Waluigi" xml:space="preserve">
+    <value>W</value>
+  </data>
+  <data name="Letter of Wario" xml:space="preserve">
+    <value>w</value>
+  </data>
+  <data name="Letter of Yoshi" xml:space="preserve">
+    <value />
+  </data>
   <data name="Menu" xml:space="preserve">
     <value>Menu</value>
   </data>
